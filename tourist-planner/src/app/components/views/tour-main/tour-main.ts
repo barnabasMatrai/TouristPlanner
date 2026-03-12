@@ -9,6 +9,7 @@ import { TourViewModel } from '../../viewmodels/tour.vm';
   selector: 'app-tour-main',
   imports: [TourList, TourInfo],
   templateUrl: './tour-main.html',
+  styleUrl: './tour-main.css',
   providers: [TourInfoViewModel, TourListViewModel, TourViewModel],
 })
 export class TourMain {

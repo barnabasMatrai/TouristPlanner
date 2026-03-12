@@ -23,7 +23,7 @@ export class TourListViewModel {
   }
 
   isTourSelected(tour: Tour) {
-    return tour === this.tourVm.selectedTour() ? "background-color:powderblue;" : "background-color:red;";
+    return tour === this.tourVm.selectedTour() ? "background-color:powderblue;" : "";
   }
 
   selectTour(tour: Tour) {

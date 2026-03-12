@@ -2,7 +2,11 @@
   <button (click)="vm.addTour()">Add tour</button>
   <ul>
     @for (tour of vm.tourVm.tours(); track $index) {
-      <li [style]="vm.isTourSelected(tour)" (click)="vm.selectTour(tour)">{{ tour.name }}</li>
+      <li>
+        <button [style]="vm.isTourSelected(tour)" (click)="vm.selectTour(tour)">
+          {{ tour.name }}
+        </button>
+      </li>
     }
   </ul>
 </div>

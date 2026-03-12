@@ -6,6 +6,7 @@ import { TourListViewModel } from '../../viewmodels/tour-list.vm';
   imports: [],
   templateUrl: './tour-list.html',
   providers: [TourListViewModel],
+  styleUrl: './tour-list.css'
 })
 export class TourList {
   vm = inject(TourListViewModel);

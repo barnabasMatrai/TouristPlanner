@@ -1,0 +1,13 @@
+.container {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+app-tour-list {
+  width: 300px;
+}
+
+app-tour-info {
+  flex: 1;
+}
