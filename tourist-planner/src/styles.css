@@ -1,1 +1,186 @@
 /* You can add global styles to this file, and also import other style files */
+/* ── Reset ── */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+  font-family: sans-serif;
+  color: rgba(220, 215, 255, 0.85);
+}
+
+/* ── Page centering ── */
+.page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+/* ── Card ── */
+.card {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 24px;
+  padding: 48px 40px;
+  width: 100%;
+  max-width: 480px;
+  text-align: center;
+  animation: fadeUp 0.6s ease both;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Typography ── */
+h1 {
+  font-size: 36px;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 16px;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 24px;
+}
+
+.subtitle {
+  font-size: 15px;
+  font-weight: 300;
+  color: rgba(220, 215, 255, 0.6);
+  margin-bottom: 32px;
+}
+
+.hint {
+  font-size: 13px;
+  color: rgba(220, 215, 255, 0.5);
+  margin-top: 16px;
+}
+
+label {
+  display: block;
+  text-align: left;
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(220, 215, 255, 0.7);
+  margin-bottom: 6px;
+}
+
+/* ── Inputs ── */
+input {
+  width: 100%;
+  padding: 12px 14px;
+  margin-bottom: 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+input:focus {
+  border-color: rgba(120, 80, 255, 0.6);
+}
+
+input::placeholder {
+  color: rgba(220, 215, 255, 0.3);
+}
+
+/* ── Buttons ── */
+button {
+  width: 100%;
+  padding: 13px;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  transition: opacity 0.2s, transform 0.15s;
+  margin-top: 8px;
+}
+
+button:hover {
+  opacity: 0.85;
+  transform: translateY(-1px);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #7c3aed, #4f46e5);
+  color: #fff;
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(220, 215, 255, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+/* ── Links ── */
+a {
+  color: #a78bfa;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* ── Home features grid ── */
+.features {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 32px;
+  text-align: left;
+}
+
+.feature {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 12px 14px;
+  font-size: 13px;
+  color: rgba(220, 215, 255, 0.8);
+}
+
+.feature:hover {
+  background: rgba(120, 80, 255, 0.12);
+}
+
+/* ── Home actions ── */
+.actions {
+  display: flex;
+  gap: 12px;
+}
+
+.actions button {
+  margin-top: 0;
+}
+
+
+
+/* ── Back button ── */
+.btn-back {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  width: auto;
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: rgba(220, 215, 255, 0.9);
+  border-radius: 10px;
+  font-size: 14px;
+  cursor: pointer;
+}

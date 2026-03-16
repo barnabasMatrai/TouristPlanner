@@ -1,14 +1,18 @@
-<form>
-  <div class="container">
+<button class="btn-back" routerLink="/">← Back</button>
+
+<div class="page">
+  <div class="card">
     <h1>Login</h1>
     <hr>
 
-    <label for="username"><b>Username</b></label>
+    <label for="username">Username</label>
     <input type="text" placeholder="Enter Username" name="username" id="username" required>
 
-    <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
+    <label for="password">Password</label>
+    <input type="password" placeholder="Enter Password" name="password" id="password" required>
 
-    <button type="submit" class="loginbtn">Login</button>
+    <button class="btn-primary" type="submit">Login</button>
+
+    <p class="hint">Don't have an account? <a routerLink="/register">Register</a></p>
   </div>
-</form>
+</div>
