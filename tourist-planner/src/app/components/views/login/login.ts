@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -10,4 +10,12 @@ import { RouterModule } from '@angular/router';
 })
 export class Login {
   
+
+constructor(private router: Router) {}
+
+  onLogin() {
+    // for now just navigate directly, later you'll check username/password here
+    this.router.navigate(['/dashboard']);
+  }
+
 }
