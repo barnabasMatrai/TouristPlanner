@@ -1,0 +1,19 @@
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <h2>My Tours</h2>
+    <button class="btn-add" (click)="tourListVm.addTour()">+ Add Tour</button>
+  </div>
+
+  <div class="tour-list">
+    @for (tour of tourVm.tours(); track $index) {
+      <div class="tour-item" [class.active]="tourVm.selectedTour() === tour" (click)="tourVm.selectTour(tour.id)">
+        <div class="tour-item-top">
+          <span class="tour-name">{{ tour.name }}</span>
+        </div>
+        <div class="tour-meta">
+          <span>{{ tour.route.transportType }}</span>
+        </div>
+      </div>
+    }
+  </div>
+</aside>

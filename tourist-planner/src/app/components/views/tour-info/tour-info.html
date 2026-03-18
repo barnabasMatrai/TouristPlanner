@@ -1,0 +1,24 @@
+@if (tourVm.selectedTour(); as tour) {
+  <div class="detail-stats">
+    <div class="stat-card">
+      <span class="stat-label">From</span>
+      <span class="stat-value">{{ tour.route.from }}</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-label">To</span>
+      <span class="stat-value">{{ tour.route.to }}</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-label">Transport</span>
+      <span class="stat-value">{{ tour.route.transportType }}</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-label">Distance</span>
+      <span class="stat-value">{{ tour.metrics.distanceKm }} km</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-label">Est. Time</span>
+      <span class="stat-value">{{ tour.metrics.estimatedTimeMinutes }} min</span>
+    </div>
+  </div>
+}

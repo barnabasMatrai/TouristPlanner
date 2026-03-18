@@ -8,70 +8,7 @@
   </nav>
 
   <div class="main">
-    <aside class="sidebar">
-      <div class="sidebar-header">
-        <h2>My Tours</h2>
-        <button class="btn-add">+ Add Tour</button>
-      </div>
-
-      <div class="tour-list">
-        <div class="tour-item active">
-          <div class="tour-item-top">
-            <span class="tour-name">Alps Hike</span>
-            <span class="badge badge-active">Active</span>
-          </div>
-          <div class="tour-meta">
-            <span>🥾 Hiking</span>
-            <span>Jun 02, 2025</span>
-          </div>
-        </div>
-
-        <div class="tour-item">
-          <div class="tour-item-top">
-            <span class="tour-name">Croatia Bike</span>
-            <span class="badge badge-done">Done</span>
-          </div>
-          <div class="tour-meta">
-            <span>🚴 Biking</span>
-            <span>Jan 04, 2025</span>
-          </div>
-        </div>
-
-        <div class="tour-item">
-          <div class="tour-item-top">
-            <span class="tour-name">Dolomites Run</span>
-            <span class="badge badge-active">Active</span>
-          </div>
-          <div class="tour-meta">
-            <span>🏃 Running</span>
-            <span>Jan 09, 2025</span>
-          </div>
-        </div>
-
-        <div class="tour-item">
-          <div class="tour-item-top">
-            <span class="tour-name">Scotland Tour</span>
-            <span class="badge badge-done">Done</span>
-          </div>
-          <div class="tour-meta">
-            <span>🌍 Vacation</span>
-            <span>Jan 10, 2025</span>
-          </div>
-        </div>
-
-        <div class="tour-item">
-          <div class="tour-item-top">
-            <span class="tour-name">Dot Trail</span>
-            <span class="badge badge-done">Done</span>
-          </div>
-          <div class="tour-meta">
-            <span>🥾 Hiking</span>
-            <span>Dec 03, 2024</span>
-          </div>
-        </div>
-      </div>
-    </aside>
-
+    <app-tour-list></app-tour-list>
     <div class="content">
 
       <div class="map-placeholder">
@@ -89,28 +26,7 @@
           </div>
         </div>
 
-        <div class="detail-stats">
-          <div class="stat-card">
-            <span class="stat-label">From</span>
-            <span class="stat-value">Innsbruck</span>
-          </div>
-          <div class="stat-card">
-            <span class="stat-label">To</span>
-            <span class="stat-value">Salzburg</span>
-          </div>
-          <div class="stat-card">
-            <span class="stat-label">Transport</span>
-            <span class="stat-value">🥾 Hiking</span>
-          </div>
-          <div class="stat-card">
-            <span class="stat-label">Distance</span>
-            <span class="stat-value">24 km</span>
-          </div>
-          <div class="stat-card">
-            <span class="stat-label">Est. Time</span>
-            <span class="stat-value">390 min</span>
-          </div>
-        </div>
+        <app-tour-info></app-tour-info>
 
         <div class="detail-description">
           <h4>Description</h4>
