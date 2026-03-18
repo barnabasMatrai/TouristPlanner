@@ -1,127 +1,18 @@
-<div class="dashboard">
-  <nav class="navbar">
-    <div class="navbar-brand">Tour <span>Planner</span></div>
-    <div class="navbar-user">
-      <span>Hello, Jarod</span>
-      <button class="btn-logout" >Logout</button>
+<div class="page">
+  <div class="card">
+    <h1>Tour <span>Planner</span></h1>
+    <p class="subtitle">Plan, organize and track your adventures easily.</p>
+
+    <div class="features">
+      <div class="feature">🌍 Hiking, biking, running & vacation tours</div>
+      <div class="feature">📍 Track your routes and progress</div>
+      <div class="feature">🗂 All your tours in one place</div>
+      <div class="feature">🚀 Simple and fast to use</div>
     </div>
-  </nav>
 
-  <div class="main">
-    <aside class="sidebar">
-      <div class="sidebar-header">
-        <h2>My Tours</h2>
-        <button class="btn-add">+ Add Tour</button>
-      </div>
-
-      <div class="tour-list">
-        <div class="tour-item active">
-          <div class="tour-item-top">
-            <span class="tour-name">Alps Hike</span>
-            <span class="badge badge-active">Active</span>
-          </div>
-          <div class="tour-meta">
-            <span>🥾 Hiking</span>
-            <span>Jun 02, 2025</span>
-          </div>
-        </div>
-
-        <div class="tour-item">
-          <div class="tour-item-top">
-            <span class="tour-name">Croatia Bike</span>
-            <span class="badge badge-done">Done</span>
-          </div>
-          <div class="tour-meta">
-            <span>🚴 Biking</span>
-            <span>Jan 04, 2025</span>
-          </div>
-        </div>
-
-        <div class="tour-item">
-          <div class="tour-item-top">
-            <span class="tour-name">Dolomites Run</span>
-            <span class="badge badge-active">Active</span>
-          </div>
-          <div class="tour-meta">
-            <span>🏃 Running</span>
-            <span>Jan 09, 2025</span>
-          </div>
-        </div>
-
-        <div class="tour-item">
-          <div class="tour-item-top">
-            <span class="tour-name">Scotland Tour</span>
-            <span class="badge badge-done">Done</span>
-          </div>
-          <div class="tour-meta">
-            <span>🌍 Vacation</span>
-            <span>Jan 10, 2025</span>
-          </div>
-        </div>
-
-        <div class="tour-item">
-          <div class="tour-item-top">
-            <span class="tour-name">Dot Trail</span>
-            <span class="badge badge-done">Done</span>
-          </div>
-          <div class="tour-meta">
-            <span>🥾 Hiking</span>
-            <span>Dec 03, 2024</span>
-          </div>
-        </div>
-      </div>
-    </aside>
-
-    <div class="content">
-      <div class="detail-panel">
-
-        <div class="detail-top">
-          <div>
-            <h2>Alps Hike</h2>
-            <p class="detail-location">📍 Innsbruck, Austria</p>
-          </div>
-          <span class="badge badge-active">Active</span>
-        </div>
-
-        <div class="detail-stats">
-          <div class="stat-card">
-            <span class="stat-label">Distance</span>
-            <span class="stat-value">24 km</span>
-          </div>
-          <div class="stat-card">
-            <span class="stat-label">Duration</span>
-            <span class="stat-value">6h 30m</span>
-          </div>
-          <div class="stat-card">
-            <span class="stat-label">Difficulty</span>
-            <span class="stat-value difficulty-hard">Hard</span>
-          </div>
-          <div class="stat-card">
-            <span class="stat-label">Type</span>
-            <span class="stat-value">🥾 Hiking</span>
-          </div>
-          <div class="stat-card">
-            <span class="stat-label">Start Date</span>
-            <span class="stat-value">Jun 02, 2025</span>
-          </div>
-          <div class="stat-card">
-            <span class="stat-label">Elevation</span>
-            <span class="stat-value">1,840 m</span>
-          </div>
-        </div>
-
-        <div class="detail-description">
-          <h4>Description</h4>
-          <p>A challenging alpine hike through the Tyrolean Alps with stunning views of the Inn Valley. The route passes through several mountain huts and offers breathtaking panoramas at every turn.</p>
-        </div>
-
-        <div class="detail-actions">
-          <button class="btn-action btn-view">View on Map</button>
-          <button class="btn-action btn-edit">Edit</button>
-          <button class="btn-action btn-delete">Delete</button>
-        </div>
-
-      </div>
+    <div class="actions">
+      <button class="btn-primary" routerLink="/login">Login</button>
+      <button class="btn-secondary" routerLink="/register">Register</button>
     </div>
   </div>
 </div>
