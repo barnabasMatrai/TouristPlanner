@@ -70,15 +70,6 @@
 
 .content { display: flex; flex-direction: column; }
 
-.map-placeholder {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: rgba(220,215,255,0.3);
-  font-size: 14px;
-}
-
 .detail-panel { padding: 20px 24px; }
 .detail-panel h3 { color: #fff; font-size: 16px; margin-bottom: 8px; }
 .detail-meta { display: flex; gap: 12px; font-size: 13px; color: rgba(220,215,255,0.5); margin-bottom: 16px; }
