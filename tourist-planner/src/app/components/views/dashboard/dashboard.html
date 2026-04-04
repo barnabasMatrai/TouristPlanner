@@ -18,7 +18,9 @@
         </div>
       </div>
       
-      <app-tour-info></app-tour-info>
+      @if (tourVm.selectedTour(); as tour) {
+      <app-tour-info [tourSignal]="tour"></app-tour-info>
+      }
 
     </div>
   </div>

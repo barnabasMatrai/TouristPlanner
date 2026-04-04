@@ -1,5 +1,6 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 import { TourInfoViewModel } from '../../viewmodels/tour-info.vm';
+import { Tour } from '../../models/tour';
 
 @Component({
   selector: 'app-tour-info',
@@ -11,4 +12,6 @@ import { TourInfoViewModel } from '../../viewmodels/tour-info.vm';
 export class TourInfoView {
   tourInfoVm = inject(TourInfoViewModel);
   tourVm = this.tourInfoVm.tourVm;
+
+  tourSignal = input.required<Tour>();
 }

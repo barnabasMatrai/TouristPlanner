@@ -8,7 +8,6 @@ export class TourViewModel {
   
   selectedTour = computed<Tour | null>(() => {
     const id = this.selectedTourId();
-    console.log(id);
     return this.tours().find(t => t.id === id) ?? null;
   });
 

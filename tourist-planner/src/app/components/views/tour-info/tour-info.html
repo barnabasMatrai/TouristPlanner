@@ -1,44 +1,44 @@
-@if (tourVm.selectedTour(); as tour) {
-  <div class="detail-panel">
-    <div class="detail-top">
-      <div>
-        <h3>{{ tour.name }}</h3>
-        <p class="detail-location">{{ tour.route.from }} → {{ tour.route.to }}</p>
-      </div>
-    </div>
+@let tour = tourSignal();
 
-    <div class="detail-stats">
-      <div class="stat-card">
-        <span class="stat-label">From</span>
-        <span class="stat-value">{{ tour.route.from }}</span>
-      </div>
-      <div class="stat-card">
-        <span class="stat-label">To</span>
-        <span class="stat-value">{{ tour.route.to }}</span>
-      </div>
-      <div class="stat-card">
-        <span class="stat-label">Transport</span>
-        <span class="stat-value">{{ tour.route.transportType }}</span>
-      </div>
-      <div class="stat-card">
-        <span class="stat-label">Distance</span>
-        <span class="stat-value">{{ tour.metrics.distanceKm }} km</span>
-      </div>
-      <div class="stat-card">
-        <span class="stat-label">Est. Time</span>
-        <span class="stat-value">{{ tour.metrics.estimatedTimeMinutes }} min</span>
-      </div>
-    </div>
-
-    <div class="detail-description">
-      <h4>Description</h4>
-      <p>{{ tour.description }}</p>
-    </div>
-
-    <div class="detail-actions">
-      <button class="btn-action btn-view">View on Map</button>
-      <button class="btn-action btn-edit">Edit</button>
-      <button class="btn-action btn-delete">Delete</button>
+<div class="detail-panel">
+  <div class="detail-top">
+    <div>
+      <h3>{{ tour.name }}</h3>
+      <p class="detail-location">{{ tour.route.from }} → {{ tour.route.to }}</p>
     </div>
   </div>
-}
+
+  <div class="detail-stats">
+    <div class="stat-card">
+      <span class="stat-label">From</span>
+      <span class="stat-value">{{ tour.route.from }}</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-label">To</span>
+      <span class="stat-value">{{ tour.route.to }}</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-label">Transport</span>
+      <span class="stat-value">{{ tour.route.transportType }}</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-label">Distance</span>
+      <span class="stat-value">{{ tour.metrics.distanceKm }} km</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-label">Est. Time</span>
+      <span class="stat-value">{{ tour.metrics.estimatedTimeMinutes }} min</span>
+    </div>
+  </div>
+
+  <div class="detail-description">
+    <h4>Description</h4>
+    <p>{{ tour.description }}</p>
+  </div>
+
+  <div class="detail-actions">
+    <button class="btn-action btn-view">View on Map</button>
+    <button class="btn-action btn-edit">Edit</button>
+    <button class="btn-action btn-delete">Delete</button>
+  </div>
+</div>

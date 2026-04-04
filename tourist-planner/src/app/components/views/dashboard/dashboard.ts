@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, effect } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { TourViewModel } from '../../viewmodels/tour.vm';
 import { TourListView } from '../tour-list/tour-list';
