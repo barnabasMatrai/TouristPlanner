@@ -30,11 +30,10 @@ export class TourCreateViewModel {
   }));
 
   tour = computed<Tour>(() => 
-  Tour.createNew(
-    this.name(),
-    this.description(),
-    this.route(),
-    this.metrics()
-  )
-);
+    new Tour(this.tourVm.tours().length + 1, this.name(), this.description(), this.route(), this.metrics())
+  );
+
+  addTour() {
+    this.tourVm.tours.update((tours) => [...tours, this.tour()]);
+  }
 }

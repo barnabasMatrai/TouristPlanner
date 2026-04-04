@@ -1,77 +1,89 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tour Form</title>
-  <!-- <style>
-    body {
-      font-family: Arial, sans-serif;
-      padding: 20px;
-      background-color: #f4f4f4;
-    }
-    form {
-      background: #fff;
-      padding: 20px;
-      border-radius: 10px;
-      max-width: 500px;
-      margin: auto;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    label {
-      display: block;
-      margin-top: 15px;
-      font-weight: bold;
-    }
-    input, textarea, select, button {
-      width: 100%;
-      padding: 8px;
-      margin-top: 5px;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-      box-sizing: border-box;
-    }
-    button {
-      margin-top: 20px;
-      background-color: #4CAF50;
-      color: white;
-      border: none;
-      cursor: pointer;
-    }
-    button:hover {
-      background-color: #45a049;
-    }
-  </style> -->
-</head>
-<body>
+<form #tourForm="ngForm" (ngSubmit)="onSubmit(tourForm)">
+  <h2>Create Tour</h2>
 
-  <form action="#" method="POST">
-    <h2>Create a Tour</h2>
+  <!-- Name -->
+  <label for="name">Tour Name</label>
+  <input
+    id="name"
+    type="text"
+    name="name"
+    [(ngModel)]="tourCreateVm.name"
+    required
+  />
 
-    <label for="name">Tour Name</label>
-    <input type="text" id="name" name="name" placeholder="Enter tour name" required>
+  <!-- Description -->
+  <label for="description">Description</label>
+  <textarea
+    id="description"
+    name="description"
+    rows="3"
+    [(ngModel)]="tourCreateVm.description"
+    required
+  ></textarea>
 
-    <label for="description">Tour Description</label>
-    <textarea id="description" name="description" rows="4" placeholder="Enter tour description" required></textarea>
+  <!-- From -->
+  <label for="from">From</label>
+  <input
+    id="from"
+    type="text"
+    name="from"
+    [(ngModel)]="tourCreateVm.from"
+    required
+  />
 
-    <label for="from">From</label>
-    <input type="text" id="from" name="from" placeholder="Starting location" required>
+  <!-- To -->
+  <label for="to">To</label>
+  <input
+    id="to"
+    type="text"
+    name="to"
+    [(ngModel)]="tourCreateVm.to"
+    required
+  />
 
-    <label for="to">To</label>
-    <input type="text" id="to" name="to" placeholder="Destination" required>
+  <!-- Transport Type -->
+  <label for="transport">Transport Type</label>
+  <select
+    id="transport"
+    name="transportType"
+    [(ngModel)]="tourCreateVm.transportType"
+    required
+  >
+    <option value="">Select transport type</option>
+    <option value="bus">Bus</option>
+    <option value="train">Train</option>
+    <option value="plane">Plane</option>
+    <option value="boat">Boat</option>
+    <option value="car">Car</option>
+  </select>
 
-    <label for="transport">Transport Type</label>
-    <select id="transport" name="transport" required>
-      <option value="">Select transport type</option>
-      <option value="bus">Bus</option>
-      <option value="train">Train</option>
-      <option value="plane">Plane</option>
-      <option value="boat">Boat</option>
-      <option value="car">Car</option>
-    </select>
+  <!-- Route Info -->
+  <label for="routeInfo">Route Information</label>
+  <textarea
+    id="routeInfo"
+    name="routeInformation"
+    rows="2"
+    [(ngModel)]="tourCreateVm.routeInformation"
+  ></textarea>
 
-    <button type="submit">Submit Tour</button>
-  </form>
+  <!-- Distance -->
+  <label for="distance">Distance (km)</label>
+  <input
+    id="distance"
+    type="number"
+    name="distanceKm"
+    [(ngModel)]="tourCreateVm.distanceKm"
+  />
 
-</body>
-</html>
+  <!-- Estimated Time -->
+  <label for="time">Estimated Time (minutes)</label>
+  <input
+    id="time"
+    type="number"
+    name="estimatedTimeMinutes"
+    [(ngModel)]="tourCreateVm.estimatedTimeMinutes"
+  />
+
+  <!-- Submit Button -->
+  <button type="submit" [disabled]="tourForm.invalid">Create Tour</button>
+</form>

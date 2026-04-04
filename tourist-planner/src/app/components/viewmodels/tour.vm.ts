@@ -13,5 +13,9 @@ export class TourViewModel {
 
   selectTour(id: number) {
     this.selectedTourId.set(id);
+    console.log(id);
+    this.isCreating.set(false);
   }
+
+  isCreating = signal<boolean>(false);
 }
