@@ -94,7 +94,9 @@
 }
 
 .map-placeholder {
-  flex: 1;
+  flex: 0 0 auto;
+  min-height: 260px;
+  height: clamp(260px, 38vh, 420px);
   display: flex;
   align-items: center;
   justify-content: center;

@@ -1,10 +1,11 @@
 import { Component, inject, input } from '@angular/core';
 import { TourInfoViewModel } from '../../viewmodels/tour-info.vm';
 import { Tour } from '../../models/tour';
+import { TourLogView } from '../tour-log/tour-log';
 
 @Component({
   selector: 'app-tour-info',
-  imports: [],
+  imports: [TourLogView],
   templateUrl: './tour-info.html',
   providers: [TourInfoViewModel],
   styleUrl: '../dashboard/dashboard.css'

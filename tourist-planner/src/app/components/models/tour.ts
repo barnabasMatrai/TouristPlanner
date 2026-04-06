@@ -34,3 +34,14 @@ export interface RouteMetrics {
   distanceKm: number;
   estimatedTimeMinutes: number;
 }
+
+export interface TourLog {
+  id: number;
+  date: string;
+  comment: string;
+  difficulty: number;
+  distance: number;
+  time: number;
+  rating: number;
+  tourId: number;
+}

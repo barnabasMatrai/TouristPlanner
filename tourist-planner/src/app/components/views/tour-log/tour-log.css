@@ -1,0 +1,151 @@
+.tour-log-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-height: 400px;
+}
+
+.tour-log-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.tour-log-card h4 {
+  font-size: 12px;
+  color: rgba(220, 215, 255, 0.4);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0;
+}
+
+.tour-log-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.form-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex: 1;
+  min-width: 140px;
+}
+
+.form-group label {
+  font-size: 12px;
+  color: rgba(220, 215, 255, 0.7);
+  margin-bottom: 0;
+}
+
+.form-group input,
+.form-group textarea {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff;
+  padding: 10px 12px;
+  font-size: 13px;
+  outline: none;
+  transition: all 0.2s ease;
+  margin-bottom: 0;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: #7c3aed;
+  background: rgba(124, 58, 237, 0.08);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: rgba(220, 215, 255, 0.35);
+}
+
+.tour-log-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  overflow-y: auto;
+  padding-right: 2px;
+}
+
+.log-item {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.log-item-top,
+.log-item-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 12px;
+  color: rgba(220, 215, 255, 0.7);
+}
+
+.log-item p {
+  margin: 8px 0 0;
+  font-size: 13px;
+  color: rgba(220, 215, 255, 0.9);
+}
+
+.empty-state {
+  margin: 0;
+  font-size: 13px;
+  color: rgba(220, 215, 255, 0.5);
+}
+
+.log-actions {
+  margin-top: 10px;
+  display: flex;
+  gap: 8px;
+}
+
+.form-actions {
+  display: flex;
+  gap: 10px;
+}
+
+/* Keep buttons consistent with dashboard style in this component scope */
+.btn-action {
+  width: auto;
+  margin-top: 0;
+  padding: 8px 16px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+}
+
+.btn-edit {
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(220, 215, 255, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.btn-view {
+  background: linear-gradient(135deg, #7c3aed, #4f46e5);
+  color: #fff;
+}
+
+.btn-delete {
+  background: rgba(200, 60, 60, 0.15);
+  color: rgba(255, 150, 150, 0.9);
+  border: 1px solid rgba(200, 60, 60, 0.25);
+}

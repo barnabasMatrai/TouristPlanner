@@ -36,6 +36,8 @@
     <p>{{ tour.description }}</p>
   </div>
 
+  <app-tour-log [tourId]="tour.id"></app-tour-log>
+
   <div class="detail-actions">
     <button class="btn-action btn-view">View on Map</button>
     <button class="btn-action btn-edit">Edit</button>
