@@ -1,89 +1,74 @@
-<form #tourForm="ngForm" (ngSubmit)="onSubmit(tourForm)">
-  <h2>Create Tour</h2>
+<div class="form-card">
+  <form #tourForm="ngForm" (ngSubmit)="onSubmit(tourForm)">
+    <h2>Create Tour</h2>
 
-  <!-- Name -->
-  <label for="name">Tour Name</label>
-  <input
-    id="name"
-    type="text"
-    name="name"
-    [(ngModel)]="tourCreateVm.name"
-    required
-  />
+    <div class="form-grid">
+      <!-- Name -->
+      <div class="form-group">
+        <label for="name">Tour Name</label>
+        <input id="name" type="text" name="name"
+          [(ngModel)]="tourCreateVm.name" required />
+      </div>
 
-  <!-- Description -->
-  <label for="description">Description</label>
-  <textarea
-    id="description"
-    name="description"
-    rows="3"
-    [(ngModel)]="tourCreateVm.description"
-    required
-  ></textarea>
+      <!-- Description -->
+      <div class="form-group full">
+        <label for="description">Description</label>
+        <textarea id="description" name="description" rows="3"
+          [(ngModel)]="tourCreateVm.description" required></textarea>
+      </div>
 
-  <!-- From -->
-  <label for="from">From</label>
-  <input
-    id="from"
-    type="text"
-    name="from"
-    [(ngModel)]="tourCreateVm.from"
-    required
-  />
+      <!-- From -->
+      <div class="form-group">
+        <label for="from">From</label>
+        <input id="from" type="text" name="from"
+          [(ngModel)]="tourCreateVm.from" required />
+      </div>
 
-  <!-- To -->
-  <label for="to">To</label>
-  <input
-    id="to"
-    type="text"
-    name="to"
-    [(ngModel)]="tourCreateVm.to"
-    required
-  />
+      <!-- To -->
+      <div class="form-group">
+        <label for="to">To</label>
+        <input id="to" type="text" name="to"
+          [(ngModel)]="tourCreateVm.to" required />
+      </div>
 
-  <!-- Transport Type -->
-  <label for="transport">Transport Type</label>
-  <select
-    id="transport"
-    name="transportType"
-    [(ngModel)]="tourCreateVm.transportType"
-    required
-  >
-    <option value="">Select transport type</option>
-    <option value="bus">Bus</option>
-    <option value="train">Train</option>
-    <option value="plane">Plane</option>
-    <option value="boat">Boat</option>
-    <option value="car">Car</option>
-  </select>
+      <!-- Transport -->
+      <div class="form-group">
+        <label for="transport">Transport Type</label>
+        <select id="transport" name="transportType"
+          [(ngModel)]="tourCreateVm.transportType" required>
+          <option value="">Select transport</option>
+          <option value="bus">Bus</option>
+          <option value="train">Train</option>
+          <option value="plane">Plane</option>
+          <option value="boat">Boat</option>
+          <option value="car">Car</option>
+        </select>
+      </div>
 
-  <!-- Route Info -->
-  <label for="routeInfo">Route Information</label>
-  <textarea
-    id="routeInfo"
-    name="routeInformation"
-    rows="2"
-    [(ngModel)]="tourCreateVm.routeInformation"
-  ></textarea>
+      <!-- Distance -->
+      <div class="form-group">
+        <label for="distance">Distance (km)</label>
+        <input id="distance" type="number" name="distanceKm"
+          [(ngModel)]="tourCreateVm.distanceKm" />
+      </div>
 
-  <!-- Distance -->
-  <label for="distance">Distance (km)</label>
-  <input
-    id="distance"
-    type="number"
-    name="distanceKm"
-    [(ngModel)]="tourCreateVm.distanceKm"
-  />
+      <!-- Time -->
+      <div class="form-group">
+        <label for="time">Estimated Time (min)</label>
+        <input id="time" type="number" name="estimatedTimeMinutes"
+          [(ngModel)]="tourCreateVm.estimatedTimeMinutes" />
+      </div>
 
-  <!-- Estimated Time -->
-  <label for="time">Estimated Time (minutes)</label>
-  <input
-    id="time"
-    type="number"
-    name="estimatedTimeMinutes"
-    [(ngModel)]="tourCreateVm.estimatedTimeMinutes"
-  />
+      <!-- Route Info -->
+      <div class="form-group full">
+        <label for="routeInfo">Route Info</label>
+        <textarea id="routeInfo" name="routeInformation" rows="2"
+          [(ngModel)]="tourCreateVm.routeInformation"></textarea>
+      </div>
+    </div>
 
-  <!-- Submit Button -->
-  <button type="submit" [disabled]="tourForm.invalid">Create Tour</button>
-</form>
+    <button class="btn-submit" type="submit" [disabled]="tourForm.invalid">
+      Create Tour
+    </button>
+  </form>
+</div>

@@ -7,7 +7,7 @@ import { FormsModule } from '@angular/forms';
   imports: [FormsModule],
   templateUrl: './tour-create.html',
   providers: [TourCreateViewModel],
-  styleUrl: '../dashboard/dashboard.css'
+  styleUrl: './tour-create.css'
 })
 export class TourCreateView {
   tourCreateVm = inject(TourCreateViewModel);
