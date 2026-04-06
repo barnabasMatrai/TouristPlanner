@@ -1,8 +1,8 @@
 <div class="tour-log-card">
   <div class="tour-log-header">
     <h4>Tour Logs</h4>
-    <button class="btn-action btn-view" type="button" (click)="toggleForm()">
-      @if (showForm) {
+    <button class="btn-action btn-view" type="button" (click)="tourLogVm.toggleForm()">
+      @if (tourLogVm.showForm) {
         Close
       } @else {
         Add Log
@@ -10,57 +10,57 @@
     </button>
   </div>
 
-  @if (showForm) {
-    <form #logSubmitForm="ngForm" (ngSubmit)="onSubmit(logSubmitForm)" class="tour-log-form">
+  @if (tourLogVm.showForm) {
+    <form #logSubmitForm="ngForm" (ngSubmit)="tourLogVm.onSubmit(logSubmitForm)" class="tour-log-form">
       <div class="form-row">
         <div class="form-group">
           <label for="logDate">Date</label>
-          <input id="logDate" type="date" name="date" [(ngModel)]="date" required />
+          <input id="logDate" type="date" name="date" [(ngModel)]="tourLogVm.date" required />
         </div>
         <div class="form-group">
           <label for="logDifficulty">Difficulty (1-5)</label>
-          <input id="logDifficulty" type="number" name="difficulty" [(ngModel)]="difficulty" min="1" max="5" required />
+          <input id="logDifficulty" type="number" name="difficulty" [(ngModel)]="tourLogVm.difficulty" min="1" max="5" required />
         </div>
         <div class="form-group">
           <label for="logRating">Rating (1-5)</label>
-          <input id="logRating" type="number" name="rating" [(ngModel)]="rating" min="1" max="5" required />
+          <input id="logRating" type="number" name="rating" [(ngModel)]="tourLogVm.rating" min="1" max="5" required />
         </div>
       </div>
 
       <div class="form-row">
         <div class="form-group">
           <label for="logDistance">Distance (km)</label>
-          <input id="logDistance" type="number" name="distance" [(ngModel)]="distance" min="0" step="0.1" required />
+          <input id="logDistance" type="number" name="distance" [(ngModel)]="tourLogVm.distance" min="0" step="0.1" required />
         </div>
         <div class="form-group">
           <label for="logTime">Time (min)</label>
-          <input id="logTime" type="number" name="time" [(ngModel)]="time" min="0" required />
+          <input id="logTime" type="number" name="time" [(ngModel)]="tourLogVm.time" min="0" required />
         </div>
       </div>
 
       <div class="form-group">
         <label for="logComment">Comment</label>
-        <textarea id="logComment" name="comment" rows="2" [(ngModel)]="comment" required></textarea>
+        <textarea id="logComment" name="comment" rows="2" [(ngModel)]="tourLogVm.comment" required></textarea>
       </div>
 
       <div class="form-actions">
         <button class="btn-action btn-view" type="submit" [disabled]="logSubmitForm.invalid">
-          @if (editingLogId !== null) {
+          @if (tourLogVm.editingLogId !== null) {
             Update Log
           } @else {
             Save Log
           }
         </button>
-        <button class="btn-action btn-edit" type="button" (click)="cancelEdit(logSubmitForm)">Cancel</button>
+        <button class="btn-action btn-edit" type="button" (click)="tourLogVm.cancelEdit(logSubmitForm)">Cancel</button>
       </div>
     </form>
   }
 
   <div class="tour-log-list">
-    @if (logs().length === 0) {
+    @if (tourLogVm.logs().length === 0) {
       <p class="empty-state">No logs yet for this tour.</p>
     } @else {
-      @for (log of logs(); track log.id) {
+      @for (log of tourLogVm.logs(); track log.id) {
         <div class="log-item">
           <div class="log-item-top">
             <span>{{ log.date }}</span>
@@ -72,8 +72,8 @@
           </div>
           <p>{{ log.comment }}</p>
           <div class="log-actions">
-            <button class="btn-action btn-edit" type="button" (click)="startEdit(log)">Edit</button>
-            <button class="btn-action btn-delete" type="button" (click)="deleteLog(log.id)">Delete</button>
+            <button class="btn-action btn-edit" type="button" (click)="tourLogVm.startEdit(log)">Edit</button>
+            <button class="btn-action btn-delete" type="button" (click)="tourLogVm.deleteLog(log.id)">Delete</button>
           </div>
         </div>
       }
