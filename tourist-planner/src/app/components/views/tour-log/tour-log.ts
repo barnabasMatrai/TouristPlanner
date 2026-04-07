@@ -1,18 +1,22 @@
-import { Component, inject, Input } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { Component, inject, input } from '@angular/core';
 import { TourLogViewModel } from '../../viewmodels/tour-log.vm';
+import { TourLogCreateComponent } from '../tour-log-create/tour-log-create';
+import { TourLogListComponent } from '../tour-log-list/tour-log-list';
+import { TourLogCreateViewModel } from '../../viewmodels/tour-log-create.vm';
+import { TourLogListViewModel } from '../../viewmodels/tour-log-list.vm';
 
 @Component({
   selector: 'app-tour-log',
-  imports: [FormsModule],
+  imports: [TourLogCreateComponent, TourLogListComponent],
   templateUrl: './tour-log.html',
-  styleUrl: './tour-log.css',
-  providers: [TourLogViewModel]
+  providers: [TourLogViewModel, TourLogCreateViewModel, TourLogListViewModel],
+  styleUrl: './tour-log.css'
 })
 export class TourLogView {
-  tourLogVm = inject(TourLogViewModel);
+  vm = inject(TourLogViewModel);
+  tourId = input.required<number>();
 
-  @Input() set tourId(value: number) {
-    this.tourLogVm.setTourId(value);
+  toggleForm() {
+    this.vm.toggleForm();
   }
 }

@@ -1,0 +1,18 @@
+<div class="log-item">
+  <div class="log-item-top">
+    <span>{{ log.date }}</span>
+    <span>Difficulty {{ log.difficulty }} / Rating {{ log.rating }}</span>
+  </div>
+
+  <div class="log-item-meta">
+    <span>{{ log.distance }} km</span>
+    <span>{{ log.time }} min</span>
+  </div>
+
+  <p>{{ log.comment }}</p>
+
+  <div class="log-actions">
+    <button class="btn-action btn-edit" type="button" (click)="edit()">Edit</button>
+    <button class="btn-action btn-delete" type="button" (click)="delete()">Delete</button>
+  </div>
+</div>

@@ -1,82 +1,14 @@
 <div class="tour-log-card">
   <div class="tour-log-header">
     <h4>Tour Logs</h4>
-    <button class="btn-action btn-view" type="button" (click)="tourLogVm.toggleForm()">
-      @if (tourLogVm.showForm) {
-        Close
-      } @else {
-        Add Log
-      }
+    <button class="btn-action btn-view" type="button" (click)="toggleForm()">
+      {{ vm.showForm() ? 'Close' : 'Add Log' }}
     </button>
   </div>
 
-  @if (tourLogVm.showForm) {
-    <form #logSubmitForm="ngForm" (ngSubmit)="tourLogVm.onSubmit(logSubmitForm)" class="tour-log-form">
-      <div class="form-row">
-        <div class="form-group">
-          <label for="logDate">Date</label>
-          <input id="logDate" type="date" name="date" [(ngModel)]="tourLogVm.date" required />
-        </div>
-        <div class="form-group">
-          <label for="logDifficulty">Difficulty (1-5)</label>
-          <input id="logDifficulty" type="number" name="difficulty" [(ngModel)]="tourLogVm.difficulty" min="1" max="5" required />
-        </div>
-        <div class="form-group">
-          <label for="logRating">Rating (1-5)</label>
-          <input id="logRating" type="number" name="rating" [(ngModel)]="tourLogVm.rating" min="1" max="5" required />
-        </div>
-      </div>
-
-      <div class="form-row">
-        <div class="form-group">
-          <label for="logDistance">Distance (km)</label>
-          <input id="logDistance" type="number" name="distance" [(ngModel)]="tourLogVm.distance" min="0" step="0.1" required />
-        </div>
-        <div class="form-group">
-          <label for="logTime">Time (min)</label>
-          <input id="logTime" type="number" name="time" [(ngModel)]="tourLogVm.time" min="0" required />
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label for="logComment">Comment</label>
-        <textarea id="logComment" name="comment" rows="2" [(ngModel)]="tourLogVm.comment" required></textarea>
-      </div>
-
-      <div class="form-actions">
-        <button class="btn-action btn-view" type="submit" [disabled]="logSubmitForm.invalid">
-          @if (tourLogVm.editingLogId !== null) {
-            Update Log
-          } @else {
-            Save Log
-          }
-        </button>
-        <button class="btn-action btn-edit" type="button" (click)="tourLogVm.cancelEdit(logSubmitForm)">Cancel</button>
-      </div>
-    </form>
+  @if (vm.showForm()) {
+    <app-tour-log-create [tourId]="tourId()" />
   }
 
-  <div class="tour-log-list">
-    @if (tourLogVm.logs().length === 0) {
-      <p class="empty-state">No logs yet for this tour.</p>
-    } @else {
-      @for (log of tourLogVm.logs(); track log.id) {
-        <div class="log-item">
-          <div class="log-item-top">
-            <span>{{ log.date }}</span>
-            <span>Difficulty {{ log.difficulty }} / Rating {{ log.rating }}</span>
-          </div>
-          <div class="log-item-meta">
-            <span>{{ log.distance }} km</span>
-            <span>{{ log.time }} min</span>
-          </div>
-          <p>{{ log.comment }}</p>
-          <div class="log-actions">
-            <button class="btn-action btn-edit" type="button" (click)="tourLogVm.startEdit(log)">Edit</button>
-            <button class="btn-action btn-delete" type="button" (click)="tourLogVm.deleteLog(log.id)">Delete</button>
-          </div>
-        </div>
-      }
-    }
-  </div>
+  <app-tour-log-list [tourId]="tourId()" />
 </div>

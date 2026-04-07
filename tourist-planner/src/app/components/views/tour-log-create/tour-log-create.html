@@ -1,0 +1,42 @@
+<form #logSubmitForm="ngForm" (ngSubmit)="onSubmit(logSubmitForm)" class="tour-log-form">
+  <div class="form-row">
+    <div class="form-group">
+      <label for="date">Date</label>
+      <input id="date" type="date" name="date" [(ngModel)]="vm.date" required />
+    </div>
+
+    <div class="form-group">
+      <label for="difficulty">Difficulty</label>
+      <input id="difficulty" type="number" name="difficulty" [(ngModel)]="vm.difficulty" min="1" max="5" required />
+    </div>
+
+    <div class="form-group">
+      <label for="rating">Rating</label>
+      <input id="rating" type="number" name="rating" [(ngModel)]="vm.rating" min="1" max="5" required />
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group">
+      <label for="distance">Distance</label>
+      <input id="distance" type="number" name="distance" [(ngModel)]="vm.distance" required />
+    </div>
+
+    <div class="form-group">
+      <label for="time">Time</label>
+      <input id="time" type="number" name="time" [(ngModel)]="vm.time" required />
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="comment">Comment</label>
+    <textarea id="comment" name="comment" [(ngModel)]="vm.comment" required></textarea>
+  </div>
+
+  <div class="form-actions">
+    <button class="btn-action btn-view" type="submit" [disabled]="logSubmitForm.invalid">
+      {{ vm.isEditing() ? 'Update Log' : 'Save Log' }}
+    </button>
+    <button class="btn-action btn-edit" type="button" (click)="cancel(logSubmitForm)">Cancel</button>
+  </div>
+</form>

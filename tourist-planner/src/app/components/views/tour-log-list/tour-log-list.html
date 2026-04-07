@@ -1,0 +1,9 @@
+<div class="tour-log-list">
+  @if (logs().length === 0) {
+    <p class="empty-state">No logs yet for this tour.</p>
+  } @else {
+    @for (log of logs(); track log.id) {
+      <app-tour-log-item [log]="log" [tourId]="tourId" />
+    }
+  }
+</div>
