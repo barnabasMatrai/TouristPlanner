@@ -74,6 +74,15 @@
   color: rgba(220, 215, 255, 0.35);
 }
 
+/* Fix later! */
+app-tour-log-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  overflow-y: auto;
+  padding-right: 2px;
+}
+
 .tour-log-list {
   display: flex;
   flex-direction: column;
