@@ -15,10 +15,10 @@ export class TourViewModel {
 
   selectTour(id: number) {
     this.selectedTourId.set(id);
-    this.isCreating.set(false);
+    this.showForm.set(false);
   }
 
-  isCreating = signal<boolean>(false);
+  showForm = signal<boolean>(false);
 
   getLogsForTour(tourId: number): Array<TourLog> {
     return this.tourLogs()[tourId] ?? [];

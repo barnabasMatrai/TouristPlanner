@@ -6,7 +6,7 @@ import { FormsModule } from '@angular/forms';
   selector: 'app-tour-create',
   imports: [FormsModule],
   templateUrl: './tour-create.html',
-  providers: [TourCreateViewModel],
+  providers: [],
   styleUrl: './tour-create.css'
 })
 export class TourCreateView {

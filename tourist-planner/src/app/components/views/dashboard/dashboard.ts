@@ -4,6 +4,9 @@ import { TourViewModel } from '../../viewmodels/tour.vm';
 import { TourListView } from '../tour-list/tour-list';
 import { TourInfoView } from "../tour-info/tour-info";
 import { TourCreateView } from '../tour-create/tour-create';
+import { TourListViewModel } from '../../viewmodels/tour-list.vm';
+import { TourInfoViewModel } from '../../viewmodels/tour-info.vm';
+import { TourCreateViewModel } from '../../viewmodels/tour-create.vm';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,7 +14,7 @@ import { TourCreateView } from '../tour-create/tour-create';
   imports: [RouterModule, TourListView, TourInfoView, TourCreateView],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css',
-  providers: [TourViewModel]
+  providers: [TourViewModel, TourListViewModel, TourInfoViewModel, TourCreateViewModel]
 })
 export class Dashboard {
 

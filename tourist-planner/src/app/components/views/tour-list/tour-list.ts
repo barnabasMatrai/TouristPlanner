@@ -5,7 +5,7 @@ import { TourListViewModel } from '../../viewmodels/tour-list.vm';
   selector: 'app-tour-list',
   imports: [],
   templateUrl: './tour-list.html',
-  providers: [TourListViewModel],
+  providers: [],
   styleUrl: '../dashboard/dashboard.css'
 })
 export class TourListView {

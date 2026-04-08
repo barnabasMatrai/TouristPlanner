@@ -6,6 +6,8 @@ import { TourViewModel } from './tour.vm';
 export class TourCreateViewModel {
   tourVm = inject(TourViewModel);
 
+  isEditing = signal<boolean>(false);
+
   name = signal<string>('');
   description = signal<string>('');
 
@@ -34,6 +36,34 @@ export class TourCreateViewModel {
   );
 
   addTour() {
+    if (this.isEditing()) {
+      const id = this.tourVm.selectedTourId();
+
+      this.tourVm.tours.update(tours =>
+        tours.map(tour =>
+          tour.id === id ? this.tour() : tour
+        )
+      );
+      this.isEditing.set(false);
+      return;
+    }
     this.tourVm.tours.update((tours) => [...tours, this.tour()]);
+  }
+
+  startEdit(tour: Tour | null) {
+    this.tourVm.showForm.set(true);
+    this.isEditing.set(true);
+    let selectedTour = this.tourVm.selectedTour();
+
+    if (selectedTour !== null) {
+      this.name.set(selectedTour.name);
+      this.description.set(selectedTour.description);
+      this.from.set(selectedTour.route.from);
+      this.to.set(selectedTour.route.to);
+      this.transportType.set(selectedTour.route.transportType);
+      this.routeInformation.set(selectedTour.route.routeInformation);
+      this.distanceKm.set(selectedTour.metrics.distanceKm);
+      this.estimatedTimeMinutes.set(selectedTour.metrics.estimatedTimeMinutes);
+    }
   }
 }

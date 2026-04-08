@@ -5,4 +5,10 @@ import { TourViewModel } from './tour.vm';
 @Injectable()
 export class TourListViewModel {
   tourVm = inject(TourViewModel);
+
+  deleteTour(tourId: number | null) {
+    this.tourVm.tours.update(currentTours =>
+      currentTours.filter(tour => tour.id !== tourId)
+    );
+  }
 }
