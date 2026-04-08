@@ -1,6 +1,7 @@
 import { Component, inject, Input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TourLogCreateViewModel } from '../../viewmodels/tour-log-create.vm';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-tour-log-create',
@@ -14,11 +15,11 @@ export class TourLogCreateComponent {
 
   @Input({ required: true }) tourId!: number;
 
-  onSubmit(form: any) {
+  onSubmit(form: NgForm) {
     this.vm.submit(this.tourId, form);
   }
 
-  cancel(form: any) {
+  cancel(form: NgForm) {
     this.vm.cancel(form);
   }
 }

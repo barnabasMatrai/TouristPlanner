@@ -1,5 +1,7 @@
 import { Injectable, signal, computed, inject } from '@angular/core';
 import { TourViewModel } from './tour.vm';
+import { NgForm } from '@angular/forms';
+import { TourLog } from '../models/tour';
 
 @Injectable()
 export class TourLogCreateViewModel {
@@ -17,7 +19,7 @@ export class TourLogCreateViewModel {
 
   isEditing = computed(() => this.editingLogId() !== null);
 
-  submit(tourId: number, form: any) {
+  submit(tourId: number, form: NgForm) {
     if (form.invalid) return;
 
     const data = {
@@ -42,7 +44,7 @@ export class TourLogCreateViewModel {
     this.closeForm(form);
   }
 
-  startEdit(log: any) {
+  startEdit(log: TourLog) {
     this.showForm.set(true);
     this.editingLogId.set(log.id);
 
@@ -54,7 +56,7 @@ export class TourLogCreateViewModel {
     this.rating.set(log.rating);
   }
 
-  toggle(form?: any) {
+  toggle(form?: NgForm) {
     if (this.showForm()) {
       this.closeForm(form);
     } else {
@@ -62,11 +64,11 @@ export class TourLogCreateViewModel {
     }
   }
 
-  cancel(form?: any) {
+  cancel(form?: NgForm) {
     this.closeForm(form);
   }
 
-  private closeForm(form?: any) {
+  private closeForm(form?: NgForm) {
     this.showForm.set(false);
     this.editingLogId.set(null);
     this.reset();
