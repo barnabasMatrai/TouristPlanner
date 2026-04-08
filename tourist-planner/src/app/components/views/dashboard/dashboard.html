@@ -11,12 +11,7 @@
     <app-tour-list></app-tour-list>
 
     <div class="content">
-      <div class="map-placeholder">
-        <div class="map-inner">
-          <div class="map-icon">🗺️</div>
-          <p>Map will appear here</p>
-        </div>
-      </div>
+      <app-tour-route-map [tour]="tourVm.selectedTour()"></app-tour-route-map>
 
       @if (tourVm.showForm()) {
         <app-tour-create></app-tour-create>

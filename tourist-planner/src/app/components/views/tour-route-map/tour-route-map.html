@@ -1,0 +1,11 @@
+<div class="map-shell">
+  <div class="map-canvas" #mapContainer></div>
+
+  @if (isLoading) {
+    <div class="map-overlay">Loading route image...</div>
+  }
+
+  @if (mapError) {
+    <div class="map-overlay map-error">{{ mapError }}</div>
+  }
+</div>

@@ -7,11 +7,12 @@ import { TourCreateView } from '../tour-create/tour-create';
 import { TourListViewModel } from '../../viewmodels/tour-list.vm';
 import { TourInfoViewModel } from '../../viewmodels/tour-info.vm';
 import { TourCreateViewModel } from '../../viewmodels/tour-create.vm';
+import { TourRouteMapView } from '../tour-route-map/tour-route-map';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [RouterModule, TourListView, TourInfoView, TourCreateView],
+  imports: [RouterModule, TourListView, TourInfoView, TourCreateView, TourRouteMapView],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css',
   providers: [TourViewModel, TourListViewModel, TourInfoViewModel, TourCreateViewModel]
