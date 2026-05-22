@@ -15,14 +15,15 @@ import java.util.List;
 @AllArgsConstructor
 @CrossOrigin
 public class TourController {
-    private final TourMapper tourMapper;
-    private final TourService tourService;
+//    private final TourMapper tourMapper;
+//    private final TourService tourService;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public TourCreate create(@RequestBody TourCreate tourIn) {
-        Tour tour = tourService.create(tourIn);
-        return tourMapper.toObject(tour);
+//        Tour tour = tourService.create(tourIn);
+//        return tourMapper.toObject(tour);
+        return null;
     }
 
     @GetMapping("/{id}")

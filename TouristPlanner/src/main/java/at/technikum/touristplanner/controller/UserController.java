@@ -14,7 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 @CrossOrigin
 public class UserController {
-    private final UserService userService;
+    //private final UserService userService;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
