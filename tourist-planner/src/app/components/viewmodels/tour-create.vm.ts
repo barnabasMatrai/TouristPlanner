@@ -1,10 +1,12 @@
 import { computed, Injectable, signal, inject } from '@angular/core';
 import { Tour, RouteInfo, RouteMetrics } from '../models/tour';
 import { TourViewModel } from './tour.vm';
+import { TourService } from '../services/tour-service';
 
 @Injectable()
 export class TourCreateViewModel {
   tourVm = inject(TourViewModel);
+  tourService = inject(TourService);
 
   isEditing = signal<boolean>(false);
 
@@ -47,7 +49,7 @@ export class TourCreateViewModel {
       this.isEditing.set(false);
       return;
     }
-    this.tourVm.tours.update((tours) => [...tours, this.tour()]);
+    this.tourVm.createTour(this.tour());
   }
 
   startEdit(tour: Tour | null) {

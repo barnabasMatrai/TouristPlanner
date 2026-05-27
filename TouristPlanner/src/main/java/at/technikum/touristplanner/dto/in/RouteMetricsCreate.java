@@ -6,8 +6,8 @@ import lombok.Data;
 @Data
 public class RouteMetricsCreate implements ICreate {
     @Positive
-    private double distanceKm;
+    private Double distanceKm;
 
     @Positive
-    private int estimatedTimeMinutes;
+    private Integer estimatedTimeMinutes;
 }

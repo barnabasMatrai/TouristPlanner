@@ -21,7 +21,9 @@ export class TourService {
   }
 
   create(tour: Tour): Observable<Tour> {
-    return this.http.post<Tour>(this.apiUrl, tour);
+    const { id, ...tourWithoutId } = tour;
+    let json = JSON.stringify(tourWithoutId);
+    return this.http.post<Tour>(this.apiUrl, tourWithoutId);
   }
 
   update(id: number, tour: Tour): Observable<Tour> {

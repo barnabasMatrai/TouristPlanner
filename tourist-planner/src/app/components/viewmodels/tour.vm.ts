@@ -2,6 +2,7 @@ import { computed, Injectable, signal } from '@angular/core';
 import { Tour, TourLog } from '../models/tour';
 import { TourService } from '../services/tour-service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { handleRequest } from '../../helpers/request.helper';
 
 @Injectable()
 export class TourViewModel {
@@ -28,10 +29,10 @@ export class TourViewModel {
   }
 
   private loadTours() {
-    this.tourService.getAll().subscribe({
-      next: (tours: Tour[]) => this.tours.set(tours),
-      error: (err: HttpErrorResponse) => console.error('Failed to load tours', err)
-    });
+    handleRequest(
+      this.tourService.getAll(),
+      (tours: Tour[]) => this.tours.set(tours)
+    );
   }
 
   selectTour(id: number) {
@@ -40,12 +41,13 @@ export class TourViewModel {
   }
 
   createTour(tour: Tour) {
-    this.tourService.create(tour).subscribe({
-      next: (created: Tour) => {
-        this.tours.update(current => [...current, created]);
-      },
-      error: (err: HttpErrorResponse) => console.error('Failed to create tour', err)
-    });
+    handleRequest(
+      this.tourService.create(tour),
+      (createdTour) => {
+        console.log('Tour created:', createdTour);
+        this.tours.update(tours => [...tours, createdTour]);
+      }
+    );
   }
 
   updateTour(tour: Tour) {

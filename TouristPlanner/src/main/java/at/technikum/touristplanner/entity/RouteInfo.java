@@ -15,9 +15,11 @@ public class RouteInfo {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    private String from_location;
+    @Column(name = "from_location")
+    private String from;
 
-    private String to_location;
+    @Column(name = "to_location")
+    private String to;
 
     private String transportType;
 
