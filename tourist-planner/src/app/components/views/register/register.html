@@ -6,18 +6,22 @@
     <hr>
 
     <label for="username">Username</label>
-    <input type="text" placeholder="Enter Username" name="username" id="username" required>
+    <input #username type="text" placeholder="Enter Username" name="username" id="username" required>
 
     <label for="email">Email</label>
-    <input type="email" placeholder="Enter Email" name="email" id="email" required>
+    <input #email type="email" placeholder="Enter Email" name="email" id="email" required>
 
     <label for="password">Password</label>
-    <input type="password" placeholder="Enter Password" name="password" id="password" required>
+    <input #password type="password" placeholder="Enter Password" name="password" id="password" required>
 
     <label for="password-repeat">Repeat Password</label>
-    <input type="password" placeholder="Repeat Password" name="password-repeat" id="password-repeat" required>
+    <input #passwordRepeat type="password" placeholder="Repeat Password" name="password-repeat" id="password-repeat" required>
 
-    <button class="btn-primary" type="submit">Register</button>
+    @if (errorMessage) {
+      <p class="error">{{ errorMessage }}</p>
+    }
+
+    <button class="btn-primary" type="submit" (click)="onRegister()">Register</button>
 
     <p class="hint">Already have an account? <a routerLink="/login">Login</a></p>
   </div>
