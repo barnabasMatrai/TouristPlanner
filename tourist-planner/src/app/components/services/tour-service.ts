@@ -21,16 +21,14 @@ export class TourService {
   }
 
   create(tour: Tour): Observable<Tour> {
-    const { id, ...tourWithoutId } = tour;
-    let json = JSON.stringify(tourWithoutId);
-    return this.http.post<Tour>(this.apiUrl, tourWithoutId);
+    return this.http.post<Tour>(this.apiUrl, tour);
   }
 
-  update(id: number, tour: Tour): Observable<Tour> {
+  update(id: number | null, tour: Tour): Observable<Tour> {
     return this.http.put<Tour>(`${this.apiUrl}/${id}`, tour);
   }
 
-  delete(id: number): Observable<void> {
+  delete(id: number | null): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 }

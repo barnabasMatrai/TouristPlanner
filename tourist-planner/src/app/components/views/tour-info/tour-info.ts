@@ -25,6 +25,6 @@ export class TourInfoView {
   }
 
   delete() {
-    this.tourListVm.deleteTour(this.tourVm.selectedTourId());
+    this.tourVm.deleteTour(this.tourVm.selectedTourId());
   }
 }

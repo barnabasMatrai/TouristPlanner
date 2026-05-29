@@ -29,4 +29,22 @@ public class TourLogService {
         return tourLogRepository.findById(id)
                 .orElseThrow(EntityNotFoundException::new);
     }
+
+    public TourLog update(int id, TourLogCreate tourLogCreate) {
+        TourLog existingTourLog = tourLogRepository.findById(id)
+                .orElseThrow(EntityNotFoundException::new);
+
+        TourLog updatedTourLog = tourLogMapper.toEntity(tourLogCreate);
+
+        updatedTourLog.setId(existingTourLog.getId());
+
+        return tourLogRepository.save(updatedTourLog);
+    }
+
+    public void delete(int id) {
+        TourLog tourLog = tourLogRepository.findById(id)
+                .orElseThrow(EntityNotFoundException::new);
+
+        tourLogRepository.delete(tourLog);
+    }
 }

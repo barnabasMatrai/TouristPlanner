@@ -29,7 +29,8 @@ public class TourController {
 
     @GetMapping("/{id}")
     public TourPublic read(@PathVariable int id) {
-        return null;
+        Tour tour = tourService.get(id);
+        return tourMapper.toObject(tour);
     }
 
     @GetMapping

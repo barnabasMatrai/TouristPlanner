@@ -2,6 +2,7 @@ import { computed, Injectable, signal, inject } from '@angular/core';
 import { Tour, RouteInfo, RouteMetrics } from '../models/tour';
 import { TourViewModel } from './tour.vm';
 import { TourService } from '../services/tour-service';
+import { handleRequest } from '../../helpers/request.helper';
 
 @Injectable()
 export class TourCreateViewModel {
@@ -41,10 +42,15 @@ export class TourCreateViewModel {
     if (this.isEditing()) {
       const id = this.tourVm.selectedTourId();
 
-      this.tourVm.tours.update(tours =>
-        tours.map(tour =>
-          tour.id === id ? this.tour() : tour
-        )
+      handleRequest(
+        this.tourService.update(id, this.tour()),
+        (updatedTour) => {
+          this.tourVm.tours.update(tours =>
+            tours.map(tour =>
+              tour.id === id ? updatedTour : tour
+            )
+          );
+        }
       );
       this.isEditing.set(false);
       return;
