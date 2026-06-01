@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { TourLog } from '../models/tour';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TourLogService {
 
-  private readonly apiUrl = 'http://localhost:8080/tours';
+  private readonly apiUrl = `${environment.apiUrl}/tours`;
 
   constructor(private readonly http: HttpClient) {}
 
