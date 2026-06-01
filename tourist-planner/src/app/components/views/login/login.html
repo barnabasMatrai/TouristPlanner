@@ -6,10 +6,14 @@
     <hr>
 
     <label for="username">Username</label>
-    <input type="text" placeholder="Enter Username" name="username" id="username" required>
+    <input #username type="text" placeholder="Enter Username" name="username" id="username" required>
 
     <label for="password">Password</label>
-    <input type="password" placeholder="Enter Password" name="password" id="password" required>
+    <input #password type="password" placeholder="Enter Password" name="password" id="password" required>
+
+    @if (errorMessage) {
+      <p class="error">{{ errorMessage }}</p>
+    }
 
     <button class="btn-primary" type="submit" (click)="onLogin()">Login</button>
 

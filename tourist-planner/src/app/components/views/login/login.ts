@@ -1,21 +1,41 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [RouterModule],  
+  imports: [RouterModule],
   templateUrl: './login.html',
   styleUrl: './login.css',
 })
 export class Login {
-  
 
-constructor(private router: Router) {}
+  @ViewChild('username') usernameInput!: ElementRef<HTMLInputElement>;
+  @ViewChild('password') passwordInput!: ElementRef<HTMLInputElement>;
+
+  errorMessage = '';
+
+  constructor(
+    private router: Router,
+    private authService: AuthService
+  ) {}
 
   onLogin() {
-    // for now just navigate directly, later you'll check username/password here
-    this.router.navigate(['/dashboard']);
-  }
+    const username = this.usernameInput.nativeElement.value.trim();
+    const password = this.passwordInput.nativeElement.value;
 
+    if (!username || !password) {
+      this.errorMessage = 'Please enter username and password.';
+      return;
+    }
+
+    this.errorMessage = '';
+    this.authService.login(username, password).subscribe({
+      next: () => this.router.navigate(['/dashboard']),
+      error: () => {
+        this.errorMessage = 'Invalid username or password.';
+      },
+    });
+  }
 }

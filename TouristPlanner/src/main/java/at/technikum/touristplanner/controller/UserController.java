@@ -1,6 +1,7 @@
 package at.technikum.touristplanner.controller;
 
-import at.technikum.touristplanner.dto.in.UserCreate;
+import at.technikum.touristplanner.dto.in.UserRegisterCreate;
+import at.technikum.touristplanner.dto.out.UserPublic;
 import at.technikum.touristplanner.service.UserService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -14,32 +15,21 @@ import java.util.List;
 @AllArgsConstructor
 @CrossOrigin
 public class UserController {
-    //private final UserService userService;
+    private final UserService userService;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public UserCreate create(@RequestBody @Valid UserCreate userCreate) {
-        return userCreate;
+    public UserPublic create(@RequestBody @Valid UserRegisterCreate userRegister) {
+        return userService.register(userRegister);
     }
 
     @GetMapping("/{id}")
-    public UserCreate read(@PathVariable int id) {
-        return null;
+    public UserPublic read(@PathVariable int id) {
+        return userService.get(id);
     }
 
     @GetMapping
-    public List<UserCreate> readAll() {
-        return List.of();
-    }
-
-    @PutMapping("/{id}")
-    public UserCreate update(@PathVariable int id, @RequestBody @Valid UserCreate userCreate) {
-        return userCreate;
-    }
-
-    @DeleteMapping("/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable int id) {
-
+    public List<UserPublic> readAll() {
+        return userService.getAll();
     }
 }

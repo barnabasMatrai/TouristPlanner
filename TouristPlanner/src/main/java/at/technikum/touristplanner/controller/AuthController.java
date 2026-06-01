@@ -1,7 +1,9 @@
 package at.technikum.touristplanner.controller;
 
 import at.technikum.touristplanner.dto.in.AuthCreate;
+import at.technikum.touristplanner.dto.out.AuthPublic;
 import at.technikum.touristplanner.service.AuthService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -14,9 +16,8 @@ public class AuthController {
         this.authService = authService;
     }
 
-    @PostMapping("/token")
-    public String generateToken(@RequestBody AuthCreate authIn) {
-        //String token = authService.
-        return "userIn";
+    @PostMapping("/login")
+    public AuthPublic login(@RequestBody @Valid AuthCreate authIn) {
+        return authService.login(authIn);
     }
 }

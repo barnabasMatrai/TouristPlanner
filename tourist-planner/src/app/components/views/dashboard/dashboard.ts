@@ -8,6 +8,7 @@ import { TourListViewModel } from '../../viewmodels/tour-list.vm';
 import { TourInfoViewModel } from '../../viewmodels/tour-info.vm';
 import { TourCreateViewModel } from '../../viewmodels/tour-create.vm';
 import { TourService } from '../../services/tour-service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -19,10 +20,14 @@ import { TourService } from '../../services/tour-service';
 })
 export class Dashboard {
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private authService: AuthService
+  ) {}
 
   onLogout() {
-    this.router.navigate(['/home']);
+    this.authService.logout();
+    this.router.navigate(['/login']);
   }
 
   tourVm = inject(TourViewModel);
