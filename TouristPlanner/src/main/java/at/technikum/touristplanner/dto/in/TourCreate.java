@@ -6,6 +6,8 @@ import lombok.Data;
 
 @Data
 public class TourCreate implements ICreate {
+    private int userId;
+
     @NotBlank
     private String name;
 

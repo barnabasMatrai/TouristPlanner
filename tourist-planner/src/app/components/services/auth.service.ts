@@ -1,4 +1,4 @@
-import { Injectable, signal } from '@angular/core';
+import { Injectable, signal, computed } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 import { environment } from '../environments/environment';
@@ -30,6 +30,7 @@ export class AuthService {
   private readonly userKey = 'user';
 
   user = signal<UserPublic | null>(this.loadUser());
+  userId = computed(() => this.user()?.id ?? null);
 
   constructor(private readonly http: HttpClient) {}
 

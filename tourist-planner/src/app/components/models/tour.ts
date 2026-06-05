@@ -1,12 +1,14 @@
 export class Tour {
   id: number = 0;
+  userId: number;
   name: string;
   description: string;
   route: RouteInfo;
   metrics: RouteMetrics;
 
-  constructor(id: number, name: string, description: string, route: RouteInfo, metrics: RouteMetrics) {
+  constructor(id: number, userId: number, name: string, description: string, route: RouteInfo, metrics: RouteMetrics) {
     this.id = id;
+    this.userId = userId;
     this.name = name;
     this.description = description;
     this.route = route;
@@ -14,12 +16,13 @@ export class Tour {
   }
 
   static createNew(
+    userId: number,
     name: string,
     description: string,
     route: RouteInfo,
     metrics: RouteMetrics
   ): Tour {
-    return new Tour(0, name, description, route, metrics);
+    return new Tour(0, userId, name, description, route, metrics);
   }
 }
 

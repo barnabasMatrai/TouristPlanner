@@ -3,11 +3,13 @@ import { Tour, RouteInfo, RouteMetrics } from '../models/tour';
 import { TourViewModel } from './tour.vm';
 import { TourService } from '../services/tour-service';
 import { handleRequest } from '../../helpers/request.helper';
+import { AuthService } from '../services/auth.service';
 
 @Injectable()
 export class TourCreateViewModel {
   tourVm = inject(TourViewModel);
   tourService = inject(TourService);
+  authService = inject(AuthService);
 
   isEditing = signal<boolean>(false);
 
@@ -34,9 +36,22 @@ export class TourCreateViewModel {
     estimatedTimeMinutes: this.estimatedTimeMinutes()
   }));
 
-  tour = computed<Tour>(() => 
-    new Tour(this.tourVm.tours().length + 1, this.name(), this.description(), this.route(), this.metrics())
-  );
+  tour = computed<Tour>(() => {
+    const userId = this.authService.userId();
+
+    if (userId === null) {
+      throw new Error('User must be logged in to create a tour');
+    }
+
+    return new Tour(
+      this.tourVm.tours().length + 1,
+      userId,
+      this.name(),
+      this.description(),
+      this.route(),
+      this.metrics()
+    );
+  });
 
   addTour() {
     if (this.isEditing()) {
