@@ -16,19 +16,23 @@ import { AuthService } from '../../services/auth.service';
   imports: [RouterModule, TourListView, TourInfoView, TourCreateView],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css',
-  providers: [TourViewModel, TourListViewModel, TourInfoViewModel, TourCreateViewModel, TourService]
+  providers: [
+    TourViewModel,
+    TourListViewModel,
+    TourInfoViewModel,
+    TourCreateViewModel,
+    TourService
+  ]
 })
 export class Dashboard {
 
-  constructor(
-    private router: Router,
-    private authService: AuthService
-  ) {}
+  private router = inject(Router);
+  authService = inject(AuthService);
+
+  tourVm = inject(TourViewModel);
 
   onLogout() {
     this.authService.logout();
     this.router.navigate(['/login']);
   }
-
-  tourVm = inject(TourViewModel);
 }

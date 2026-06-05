@@ -7,4 +7,5 @@ import lombok.Data;
 @AllArgsConstructor
 public class AuthPublic implements IPublic {
     private String accessToken;
+    private UserLoginPublic user;
 }

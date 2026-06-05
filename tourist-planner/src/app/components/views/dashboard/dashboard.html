@@ -2,7 +2,7 @@
   <nav class="navbar">
     <div class="navbar-brand">Tour <span>Planner</span></div>
     <div class="navbar-user">
-      <span>Hello, Jarod</span>
+      <span>Hello, {{ authService.user()?.username }}</span>
       <button class="btn-logout" (click)="onLogout()">Logout</button>
     </div>
   </nav>

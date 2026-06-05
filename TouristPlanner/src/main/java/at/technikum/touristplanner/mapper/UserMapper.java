@@ -1,6 +1,7 @@
 package at.technikum.touristplanner.mapper;
 
 import at.technikum.touristplanner.dto.in.UserCreate;
+import at.technikum.touristplanner.dto.out.UserLoginPublic;
 import at.technikum.touristplanner.dto.out.UserPublic;
 import at.technikum.touristplanner.entity.User;
 import org.mapstruct.Mapper;
@@ -14,4 +15,6 @@ public interface UserMapper {
     @Mapping(target = "passwordHash", ignore = true)
     @Mapping(target = "tours", ignore = true)
     UserPublic toObject(User user);
+
+    UserLoginPublic toLoginObject(User user);
 }

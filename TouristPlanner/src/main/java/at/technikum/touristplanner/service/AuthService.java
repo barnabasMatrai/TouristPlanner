@@ -2,8 +2,10 @@ package at.technikum.touristplanner.service;
 
 import at.technikum.touristplanner.dto.in.AuthCreate;
 import at.technikum.touristplanner.dto.out.AuthPublic;
+import at.technikum.touristplanner.dto.out.UserLoginPublic;
 import at.technikum.touristplanner.entity.User;
 import at.technikum.touristplanner.exception.InvalidCredentialsException;
+import at.technikum.touristplanner.mapper.UserMapper;
 import at.technikum.touristplanner.repository.UserRepository;
 import at.technikum.touristplanner.security.JwtIssuer;
 import lombok.AllArgsConstructor;
@@ -16,6 +18,7 @@ import java.util.List;
 @AllArgsConstructor
 public class AuthService {
 
+    private final UserMapper userMapper;
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtIssuer jwtIssuer;
@@ -29,6 +32,7 @@ public class AuthService {
         }
 
         String token = jwtIssuer.issue(user.getId(), user.getEmail(), List.of("USER"));
-        return new AuthPublic(token);
+        UserLoginPublic userLogin = userMapper.toLoginObject(user);
+        return new AuthPublic(token, userLogin);
     }
 }
