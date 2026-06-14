@@ -7,6 +7,7 @@ public class RouteInfoPublic implements IPublic {
     private int id;
     private String from;
     private String to;
+    private String routeGeometry;
     private String transportType;
     private String routeInformation;
 }

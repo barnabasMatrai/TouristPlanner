@@ -21,6 +21,21 @@ public class RouteInfo {
     @Column(name = "to_location")
     private String to;
 
+    @Column(name = "from_latitude")
+    private Double fromLatitude;
+
+    @Column(name = "from_longitude")
+    private Double fromLongitude;
+
+    @Column(name = "to_latitude")
+    private Double toLatitude;
+
+    @Column(name = "to_longitude")
+    private Double toLongitude;
+
+    @Column(columnDefinition = "TEXT")
+    private String routeGeometry;
+
     private String transportType;
 
     private String routeInformation;

@@ -9,6 +9,6 @@ public class TourPublic implements IPublic {
     private int id;
     private String name;
     private String description;
-    private RouteInfoCreate route;
-    private RouteMetricsCreate metrics;
+    private RouteInfoPublic route;
+    private RouteMetricsPublic metrics;
 }
