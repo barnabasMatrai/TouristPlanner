@@ -1,0 +1,19 @@
+<div>
+  <input
+    #search
+    type="text"
+    placeholder="Search..."
+    [(ngModel)]="searchVm.query" required
+  >
+  
+  <div class="tour-list">
+  @for (tour of searchVm.filteredTours(); track tour.id) {
+    <div class="tour-item" (click)="tourVm.selectTour(tour.id)">
+      <div class="tour-item-top">
+        <span class="tour-name">{{ tour.name }}</span>
+      </div>
+    </div>
+  }
+  </div>
+  
+</div>

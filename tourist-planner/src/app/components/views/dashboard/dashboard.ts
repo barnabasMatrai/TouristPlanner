@@ -9,11 +9,15 @@ import { TourInfoViewModel } from '../../viewmodels/tour-info.vm';
 import { TourCreateViewModel } from '../../viewmodels/tour-create.vm';
 import { TourService } from '../../services/tour-service';
 import { AuthService } from '../../services/auth.service';
+import { MapView } from '../map/map';
+import { MapViewModel } from '../../viewmodels/map.vm';
+import { SearchView } from "../search/search";
+import { SearchViewModel } from '../../viewmodels/search.vm';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [RouterModule, TourListView, TourInfoView, TourCreateView],
+  imports: [RouterModule, TourListView, TourInfoView, TourCreateView, SearchView],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css',
   providers: [
@@ -21,7 +25,9 @@ import { AuthService } from '../../services/auth.service';
     TourListViewModel,
     TourInfoViewModel,
     TourCreateViewModel,
-    TourService
+    SearchViewModel,
+    TourService,
+    MapViewModel
   ]
 })
 export class Dashboard {

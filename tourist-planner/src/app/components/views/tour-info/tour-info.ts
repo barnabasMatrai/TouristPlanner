@@ -4,10 +4,11 @@ import { TourListViewModel } from '../../viewmodels/tour-list.vm';
 import { TourCreateViewModel } from '../../viewmodels/tour-create.vm';
 import { Tour } from '../../models/tour';
 import { TourLogView } from '../tour-log/tour-log';
+import { MapView } from '../map/map';
 
 @Component({
   selector: 'app-tour-info',
-  imports: [TourLogView],
+  imports: [TourLogView, MapView],
   templateUrl: './tour-info.html',
   providers: [],
   styleUrl: '../dashboard/dashboard.css'

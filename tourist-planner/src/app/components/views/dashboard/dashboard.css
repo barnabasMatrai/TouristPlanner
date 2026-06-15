@@ -159,6 +159,7 @@
 .btn-logout, .btn-add, .btn-action {
   width: auto !important;
   padding: 8px 16px;
+  margin: 4px 4px;
   border-radius: 10px;
   font-size: 13px;
   font-weight: 500;

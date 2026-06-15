@@ -29,6 +29,7 @@ export class Tour {
 export interface RouteInfo {
   from: string;
   to: string;
+  routeGeometry: string;
   transportType: string;
   routeInformation: string;
 }

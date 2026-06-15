@@ -18,6 +18,7 @@ export class TourCreateViewModel {
 
   from = signal<string>('');
   to = signal<string>('');
+  routeGeometry = signal<string>('');
   transportType = signal<string>('');
   routeInformation = signal<string>('');
 
@@ -27,6 +28,7 @@ export class TourCreateViewModel {
   route = computed<RouteInfo>(() => ({
     from: this.from(),
     to: this.to(),
+    routeGeometry: this.routeGeometry(),
     transportType: this.transportType(),
     routeInformation: this.routeInformation()
   }));

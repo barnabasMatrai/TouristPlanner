@@ -17,6 +17,7 @@ export class TourViewModel {
   tours = signal<Tour[]>([]);
   selectedTourId = signal<number | null>(null);
   showForm = signal<boolean>(false);
+  showSearch = signal<boolean>(false);
 
   tourLogs = signal<Record<number, TourLog[]>>({});
 
@@ -54,6 +55,7 @@ export class TourViewModel {
         );
 
         this.showForm.set(false);
+        this.showSearch.set(false);
 
         this.loadLogsForTour(tour.id);
       }
