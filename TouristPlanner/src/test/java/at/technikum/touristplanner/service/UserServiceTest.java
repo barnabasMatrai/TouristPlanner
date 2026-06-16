@@ -4,6 +4,7 @@ import at.technikum.touristplanner.dto.in.UserRegisterCreate;
 import at.technikum.touristplanner.dto.out.UserPublic;
 import at.technikum.touristplanner.entity.User;
 import at.technikum.touristplanner.exception.EntityNotFoundException;
+import at.technikum.touristplanner.exception.UsernameAlreadyExistsException;
 import at.technikum.touristplanner.mapper.UserMapper;
 import at.technikum.touristplanner.repository.UserRepository;
 import org.junit.jupiter.api.Test;
@@ -36,6 +37,19 @@ class UserServiceTest {
     private UserService userService;
 
     @Test
+    void register_throwsUsernameAlreadyExistsExceptionWhenUsernameTaken() {
+        UserRegisterCreate request = new UserRegisterCreate();
+        request.setUsername("alice");
+        request.setEmail("alice@example.com");
+        request.setPassword("secret");
+
+        when(userRepository.existsByUsername("alice")).thenReturn(true);
+
+        assertThrows(UsernameAlreadyExistsException.class, () -> userService.register(request));
+        verify(userRepository, never()).save(any(User.class));
+    }
+
+    @Test
     void register_encodesPasswordAndReturnsUserPublic() {
         UserRegisterCreate request = new UserRegisterCreate();
         request.setUsername("alice");
@@ -53,6 +67,7 @@ class UserServiceTest {
         expected.setUsername("alice");
         expected.setEmail("alice@example.com");
 
+        when(userRepository.existsByUsername("alice")).thenReturn(false);
         when(passwordEncoder.encode("secret")).thenReturn("hashed");
         when(userRepository.save(any(User.class))).thenReturn(saved);
         when(userMapper.toObject(saved)).thenReturn(expected);
