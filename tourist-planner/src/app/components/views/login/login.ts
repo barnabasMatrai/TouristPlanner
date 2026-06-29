@@ -1,11 +1,13 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, ViewChild, signal } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { handleRequest } from '../../../helpers/request.helper';
+import { ErrorMessage } from '../errors/error-message';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [RouterModule],
+  imports: [RouterModule, ErrorMessage],
   templateUrl: './login.html',
   styleUrl: './login.css',
 })
@@ -14,7 +16,7 @@ export class Login {
   @ViewChild('username') usernameInput!: ElementRef<HTMLInputElement>;
   @ViewChild('password') passwordInput!: ElementRef<HTMLInputElement>;
 
-  errorMessage = '';
+  errorMessage = signal<string>('');
 
   constructor(
     private router: Router,
@@ -26,16 +28,17 @@ export class Login {
     const password = this.passwordInput.nativeElement.value;
 
     if (!username || !password) {
-      this.errorMessage = 'Please enter username and password.';
+      this.errorMessage.set('Please enter username and password.');
       return;
     }
 
-    this.errorMessage = '';
-    this.authService.login(username, password).subscribe({
-      next: () => this.router.navigate(['/dashboard']),
-      error: () => {
-        this.errorMessage = 'Invalid username or password.';
-      },
-    });
+    this.errorMessage.set('');
+    handleRequest(
+      this.authService.login(username, password),
+      () => this.router.navigate(['/dashboard']),
+      () => {
+        this.errorMessage.set('Invalid username or password.');
+      }
+    );
   }
 }

@@ -11,9 +11,7 @@
     <label for="password">Password</label>
     <input #password type="password" placeholder="Enter Password" name="password" id="password" required>
 
-    @if (errorMessage) {
-      <p class="error">{{ errorMessage }}</p>
-    }
+    <app-error-message [message]="errorMessage()" />
 
     <button class="btn-primary" type="submit" (click)="onLogin()">Login</button>
 
