@@ -1,6 +1,6 @@
 <div class="form-card">
   <form #tourForm="ngForm" (ngSubmit)="onSubmit(tourForm)">
-    <h2>Create Tour</h2>
+    <h2>{{ this.tourCreateVm.isEditing() ? 'Update Tour' : 'Create Tour' }}</h2>
 
     <div class="form-grid">
       <!-- Name -->
@@ -45,20 +45,6 @@
         </select>
       </div>
 
-      <!-- Distance -->
-      <div class="form-group">
-        <label for="distance">Distance (km)</label>
-        <input id="distance" type="number" name="distanceKm"
-          [(ngModel)]="tourCreateVm.distanceKm" />
-      </div>
-
-      <!-- Time -->
-      <div class="form-group">
-        <label for="time">Estimated Time (min)</label>
-        <input id="time" type="number" name="estimatedTimeMinutes"
-          [(ngModel)]="tourCreateVm.estimatedTimeMinutes" />
-      </div>
-
       <!-- Route Info -->
       <div class="form-group full">
         <label for="routeInfo">Route Info</label>
@@ -68,7 +54,7 @@
     </div>
 
     <button class="btn-submit" type="submit" [disabled]="tourForm.invalid">
-      Create Tour
+      {{ this.tourCreateVm.isEditing() ? 'Update Tour' : 'Create Tour' }}
     </button>
   </form>
 </div>

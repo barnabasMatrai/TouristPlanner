@@ -67,19 +67,24 @@ export class TourViewModel {
       this.tourService.create(tour),
       (createdTour) => {
         this.tours.update(tours => [...tours, createdTour]);
+        this.selectTour(createdTour.id);
         this.showForm.set(false);
       }
     );
   }
 
   updateTour(tour: Tour) {
-    handleRequest(
-      this.tourService.update(tour.id, tour),
-      (updatedTour: Tour) => {
-        this.tours.update(current =>
-          current.map(t => t.id === updatedTour.id ? updatedTour : t)
-        );
+    const id = this.selectedTourId();
 
+    handleRequest(
+      this.tourService.update(id, tour),
+      (updatedTour) => {
+        this.tours.update(tours =>
+          tours.map(tour =>
+            tour.id === id ? updatedTour : tour
+          )
+        );
+        this.selectTour(updatedTour.id);
         this.showForm.set(false);
       }
     );

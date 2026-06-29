@@ -6,6 +6,7 @@ import at.technikum.touristplanner.dto.openrouteservice.Geometry;
 import at.technikum.touristplanner.dto.openrouteservice.RouteResponse;
 import at.technikum.touristplanner.dto.service.Coordinates;
 import at.technikum.touristplanner.service.client.OpenRouteServiceClient;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -30,7 +31,8 @@ class GeoServiceTest {
 
     @BeforeEach
     void setUp() {
-        geoService = new GeoService("test-api-key", openRouteServiceClient);
+        ObjectMapper objectMapper = new ObjectMapper();
+        geoService = new GeoService("test-api-key", openRouteServiceClient, objectMapper);
     }
 
     @Test

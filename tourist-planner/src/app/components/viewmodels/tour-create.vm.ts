@@ -56,23 +56,12 @@ export class TourCreateViewModel {
   });
 
   addTour() {
-    if (this.isEditing()) {
-      const id = this.tourVm.selectedTourId();
-
-      handleRequest(
-        this.tourService.update(id, this.tour()),
-        (updatedTour) => {
-          this.tourVm.tours.update(tours =>
-            tours.map(tour =>
-              tour.id === id ? updatedTour : tour
-            )
-          );
-        }
-      );
-      this.isEditing.set(false);
-      return;
-    }
     this.tourVm.createTour(this.tour());
+  }
+
+  updateTour() {
+    this.tourVm.updateTour(this.tour());
+    this.isEditing.set(false);
   }
 
   startEdit(tour: Tour | null) {

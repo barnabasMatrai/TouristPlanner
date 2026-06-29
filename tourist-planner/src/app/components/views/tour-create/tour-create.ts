@@ -16,6 +16,11 @@ export class TourCreateView {
   onSubmit(form: any) {
     if (form.invalid) return;
 
+    if (this.tourCreateVm.isEditing()) {
+      this.tourCreateVm.updateTour();
+      return;
+    }
+    
     this.tourCreateVm.addTour();
   }
 }

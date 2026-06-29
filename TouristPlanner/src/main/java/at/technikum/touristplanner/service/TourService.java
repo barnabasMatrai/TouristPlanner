@@ -33,59 +33,39 @@ public class TourService {
     private final UserRepository userRepository;
     private final GeoService geoService;
 
+    private record ResolvedRoute(
+            Coordinates from,
+            Coordinates to,
+            RouteResponse route
+    ) {}
+
     public Tour create(TourCreate tourCreate) {
         User user = userRepository.findById(tourCreate.getUserId())
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
         RouteInfoCreate routeInfoCreate = tourCreate.getRoute();
-        String fromLocation = routeInfoCreate.getFrom();
-        Coordinates fromCoordinates = geoService.findCoordinates(fromLocation)
-                .orElseThrow(() -> new InvalidLocationException(fromLocation));
-
-        String toLocation = routeInfoCreate.getTo();
-        Coordinates toCoordinates = geoService.findCoordinates(toLocation)
-                .orElseThrow(() -> new InvalidLocationException(toLocation));
-        Tour tour = tourMapper.toEntity(tourCreate);
-        tour.setUser(user);
-        RouteInfo routeInfo = tour.getRoute();
-        routeInfo.setFromLatitude(fromCoordinates.getLatitude());
-        routeInfo.setFromLongitude(fromCoordinates.getLongitude());
-
-        routeInfo.setToLatitude(toCoordinates.getLatitude());
-        routeInfo.setToLongitude(toCoordinates.getLongitude());
-        RouteMetrics metrics = tour.getMetrics();
-
-        RouteResponse route = geoService.getRoute(fromCoordinates, toCoordinates)
-                .orElseThrow(() -> new RuntimeException("Route not found"));
+        ResolvedRoute resolvedRoute = resolveRoute(routeInfoCreate);
 
         RouteResponse.Summary summary =
-                route.getFeatures().getFirst().getProperties().getSummary();
+                resolvedRoute.route()
+                        .getFeatures()
+                        .getFirst()
+                        .getProperties()
+                        .getSummary();
+        Tour tour = tourMapper.toEntity(tourCreate);
+        tour.setUser(user);
+
+        RouteMetrics metrics = tour.getMetrics();
 
         metrics.setDistanceKm(summary.getDistance());
         metrics.setEstimatedTimeMinutes((int) summary.getDuration());
 
-        List<List<Double>> coords =
-                route.getFeatures().getFirst()
-                        .getGeometry()
-                        .getCoordinates();
-
-        String geometryJson;
-
-        try {
-            ObjectMapper mapper = new ObjectMapper();
-
-            Map<String, Object> geoJson = Map.of(
-                    "type", "LineString",
-                    "coordinates", coords
-            );
-
-            geometryJson = mapper.writeValueAsString(geoJson);
-
-        } catch (JsonProcessingException e) {
-            throw new RuntimeException("Failed to serialize route geometry", e);
-        }
-
-        routeInfo.setRouteGeometry(geometryJson);
+        enrichRouteInfo(
+                tour.getRoute(),
+                resolvedRoute.from(),
+                resolvedRoute.to(),
+                resolvedRoute.route()
+        );
 
         return tourRepository.save(tour);
     }
@@ -103,9 +83,29 @@ public class TourService {
         Tour existingTour = tourRepository.findById(id)
                 .orElseThrow(EntityNotFoundException::new);
 
-        Tour updatedTour = tourMapper.toEntity(tourCreate);
+        RouteInfoCreate routeInfoCreate = tourCreate.getRoute();
+        ResolvedRoute resolvedRoute = resolveRoute(routeInfoCreate);
 
+        RouteResponse.Summary summary =
+                resolvedRoute.route()
+                        .getFeatures()
+                        .getFirst()
+                        .getProperties()
+                        .getSummary();
+        Tour updatedTour = tourMapper.toEntity(tourCreate);
         updatedTour.setId(existingTour.getId());
+
+        RouteMetrics metrics = updatedTour.getMetrics();
+
+        metrics.setDistanceKm(summary.getDistance());
+        metrics.setEstimatedTimeMinutes((int) summary.getDuration());
+
+        enrichRouteInfo(
+                updatedTour.getRoute(),
+                resolvedRoute.from(),
+                resolvedRoute.to(),
+                resolvedRoute.route()
+        );
 
         return tourRepository.save(updatedTour);
     }
@@ -115,5 +115,35 @@ public class TourService {
                 .orElseThrow(EntityNotFoundException::new);
 
         tourRepository.delete(tour);
+    }
+
+    private ResolvedRoute resolveRoute(RouteInfoCreate routeInfoCreate) {
+
+        String fromLocation = routeInfoCreate.getFrom();
+        Coordinates fromCoordinates = geoService.findCoordinates(fromLocation)
+                .orElseThrow(() -> new InvalidLocationException(fromLocation));
+
+        String toLocation = routeInfoCreate.getTo();
+        Coordinates toCoordinates = geoService.findCoordinates(toLocation)
+                .orElseThrow(() -> new InvalidLocationException(toLocation));
+
+        RouteResponse route = geoService.getRoute(fromCoordinates, toCoordinates)
+                .orElseThrow(() -> new RuntimeException("Route not found"));
+
+        return new ResolvedRoute(fromCoordinates, toCoordinates, route);
+    }
+
+    private void enrichRouteInfo(RouteInfo routeInfo,
+                                 Coordinates fromCoordinates,
+                                 Coordinates toCoordinates,
+                                 RouteResponse route) {
+
+        routeInfo.setFromLatitude(fromCoordinates.getLatitude());
+        routeInfo.setFromLongitude(fromCoordinates.getLongitude());
+
+        routeInfo.setToLatitude(toCoordinates.getLatitude());
+        routeInfo.setToLongitude(toCoordinates.getLongitude());
+
+        routeInfo.setRouteGeometry(geoService.getRouteGeometry(route));
     }
 }

@@ -6,10 +6,13 @@ import at.technikum.touristplanner.dto.openrouteservice.RouteRequest;
 import at.technikum.touristplanner.dto.openrouteservice.RouteResponse;
 import at.technikum.touristplanner.dto.service.Coordinates;
 import at.technikum.touristplanner.service.client.OpenRouteServiceClient;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -17,13 +20,15 @@ public class GeoService {
 
     private final String openRouteServiceApiKey;
     private final OpenRouteServiceClient openRouteServiceClient;
+    private final ObjectMapper objectMapper;
 
     public GeoService(
             @Value("${openrouteservice.api-key}") String openRouteServiceApiKey,
-            OpenRouteServiceClient openRouteServiceClient
+            OpenRouteServiceClient openRouteServiceClient, ObjectMapper objectMapper
     ) {
         this.openRouteServiceApiKey = openRouteServiceApiKey;
         this.openRouteServiceClient = openRouteServiceClient;
+        this.objectMapper = objectMapper;
     }
 
     public Optional<Coordinates> findCoordinates(String query) {
@@ -61,5 +66,23 @@ public class GeoService {
         }
 
         return Optional.of(response);
+    }
+
+    public String getRouteGeometry(RouteResponse route) {
+        try {
+            List<List<Double>> coords = route.getFeatures()
+                    .getFirst()
+                    .getGeometry()
+                    .getCoordinates();
+
+            Map<String, Object> geoJson = Map.of(
+                    "type", "LineString",
+                    "coordinates", coords
+            );
+
+            return objectMapper.writeValueAsString(geoJson);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException("Failed to serialize route geometry", e);
+        }
     }
 }
