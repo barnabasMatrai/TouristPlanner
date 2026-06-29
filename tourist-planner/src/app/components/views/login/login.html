@@ -11,7 +11,10 @@
     <label for="password">Password</label>
     <input #password type="password" placeholder="Enter Password" name="password" id="password" required>
 
-    <app-error-message [message]="errorMessage()" />
+    <app-error-modal
+      [message]="errorService.message()"
+      (closeModal)="errorService.clear()"
+    />
 
     <button class="btn-primary" type="submit" (click)="onLogin()">Login</button>
 

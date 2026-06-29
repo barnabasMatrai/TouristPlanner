@@ -17,9 +17,10 @@
     <label for="password-repeat">Repeat Password</label>
     <input #passwordRepeat type="password" placeholder="Repeat Password" name="password-repeat" id="password-repeat" required>
 
-    @if (errorMessage) {
-      <p class="error">{{ errorMessage }}</p>
-    }
+    <app-error-modal
+      [message]="errorService.message()"
+      (closeModal)="errorService.clear()"
+    />
 
     <button class="btn-primary" type="submit" (click)="onRegister()">Register</button>
 

@@ -1,0 +1,9 @@
+@if (message()) {
+  <div class="backdrop" (click)="closeModal.emit()">
+    <div class="modal" (click)="$event.stopPropagation()">
+      <h3 class="error-text">Error</h3>
+      <p class="error-text">{{ message() }}</p>
+      <button (click)="closeModal.emit()">OK</button>
+    </div>
+  </div>
+}
