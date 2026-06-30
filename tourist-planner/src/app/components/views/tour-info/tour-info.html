@@ -42,8 +42,9 @@
   <app-tour-log [tourId]="tour.id"></app-tour-log>
 
   <div class="detail-actions">
-    <button class="btn-action btn-view">View on Map</button>
-    <button class="btn-action btn-edit" (click)="edit()">Edit</button>
-    <button class="btn-action btn-delete" (click)="delete()">Delete</button>
+    @if (this.tourSignal().userId === authService.getUserId()) {
+      <button class="btn-action btn-edit" (click)="edit()">Edit</button>
+      <button class="btn-action btn-delete" (click)="delete()">Delete</button>
+    }
   </div>
 </div>

@@ -15,6 +15,7 @@ import org.mapstruct.MappingConstants;
 public interface TourMapper {
     @Mapping(target = "user", ignore = true)
     Tour toEntity(TourCreate tourIn);
+    @Mapping(target = "userId", source = "user.id")
     TourPublic toObject(Tour tour);
     RouteInfo toEntity(RouteInfoCreate dto);
     RouteMetrics toEntity(RouteMetricsCreate dto);

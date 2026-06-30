@@ -7,6 +7,7 @@ import lombok.Data;
 @Data
 public class TourPublic implements IPublic {
     private int id;
+    private int userId;
     private String name;
     private String description;
     private RouteInfoPublic route;
