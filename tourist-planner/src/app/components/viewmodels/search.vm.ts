@@ -23,6 +23,8 @@ export class SearchViewModel {
     return this.tourVm.tours().filter(tour =>
       tour.name.toLowerCase().includes(query) ||
       tour.description.toLowerCase().includes(query) ||
+      tour.route.from.toLowerCase().includes(query) ||
+      tour.route.to.toLowerCase().includes(query) ||
       this.tourVm.getLogsForTour(tour.id)
         .some(log =>
         log.comment.toLowerCase().includes(query)
