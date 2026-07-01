@@ -47,5 +47,16 @@
       <button class="btn-action btn-delete" (click)="delete()">Delete</button>
     }
     <button class="btn-action btn-secondary" (click)="export()">Export</button>
+
+    <button class="btn-action btn-secondary" (click)="fileInput.click()">
+      Import
+    </button>
+
+    <input
+      #fileInput
+      type="file"
+      accept=".json"
+      hidden
+      (change)="import($event)">
   </div>
 </div>

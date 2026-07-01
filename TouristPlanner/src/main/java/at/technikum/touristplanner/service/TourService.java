@@ -14,7 +14,6 @@ import at.technikum.touristplanner.exception.InvalidLocationException;
 import at.technikum.touristplanner.mapper.TourMapper;
 import at.technikum.touristplanner.repository.TourRepository;
 import at.technikum.touristplanner.repository.UserRepository;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

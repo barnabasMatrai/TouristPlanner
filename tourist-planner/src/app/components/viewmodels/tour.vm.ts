@@ -1,8 +1,9 @@
-import { computed, Injectable, signal } from '@angular/core';
+import { computed, Injectable, signal, inject } from '@angular/core';
 import { Tour, TourLog } from '../models/tour';
 import { TourService } from '../services/tour-service';
 import { TourLogService } from '../services/tour-log-service';
 import { handleRequest } from '../../helpers/request.helper';
+import { AuthService } from '../services/auth.service';
 
 @Injectable()
 export class TourViewModel {
@@ -13,6 +14,8 @@ export class TourViewModel {
   ) {
     this.loadTours();
   }
+
+  authService = inject(AuthService);
 
   tours = signal<Tour[]>([]);
   selectedTourId = signal<number | null>(null);
@@ -118,6 +121,34 @@ export class TourViewModel {
         alert("JSON copied to clipboard");
       }
     );
+  }
+
+  importTour(event: Event) {
+    const input = event.target as HTMLInputElement;
+
+    if (!input.files?.length) return;
+
+    const file = input.files[0];
+
+    file.text().then(text => {
+      const data: Tour = JSON.parse(text);
+      const userId = this.authService.getUserId();;
+      if (userId !== null) {
+        data.userId = userId;
+        handleRequest(
+          this.tourService.create(data),
+          (createdTour) => {
+            this.tours.update(tours => [...tours, createdTour]);
+            this.selectTour(createdTour.id);
+            this.showForm.set(false);
+
+            alert("Data import successful");
+          }
+        );
+      }
+    });
+
+    input.value = '';
   }
 
   // -------------------------

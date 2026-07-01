@@ -66,7 +66,7 @@ export class AuthService {
     return localStorage.getItem(this.tokenKey);
   }
 
-  getUserId(): number | string | null {
+  getUserId(): number | null {
     return this.user()?.id ?? null;
   }
 

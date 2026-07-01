@@ -36,4 +36,8 @@ export class TourService {
   export(id: number | null): Observable<string> {
     return this.http.get<string>(`${this.apiUrl}/${id}/export`);
   }
+
+  import(tour: Tour): Observable<Tour> {
+    return this.http.post<Tour>(`${this.apiUrl}/import`, tour);
+  }
 }

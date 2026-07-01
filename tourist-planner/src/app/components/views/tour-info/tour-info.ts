@@ -41,4 +41,8 @@ export class TourInfoView {
   export() {
     this.tourVm.exportTour(this.tourVm.selectedTourId());
   }
+
+  import(event: Event) {
+    this.tourVm.importTour(event);
+  }
 }
