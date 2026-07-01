@@ -32,4 +32,8 @@ export class TourService {
   delete(id: number | null): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
+
+  export(id: number | null): Observable<string> {
+    return this.http.get<string>(`${this.apiUrl}/${id}/export`);
+  }
 }

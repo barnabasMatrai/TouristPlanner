@@ -105,6 +105,21 @@ export class TourViewModel {
     );
   }
 
+  exportTour(id: number | null) {
+    if (id === null) return;
+
+    handleRequest(
+      this.tourService.export(id),
+      (data) => {
+        const json = JSON.stringify(data, null, 2);
+
+        navigator.clipboard.writeText(json);
+
+        alert("JSON copied to clipboard");
+      }
+    );
+  }
+
   // -------------------------
   // TOUR LOGS
   // -------------------------

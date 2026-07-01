@@ -1,6 +1,7 @@
 package at.technikum.touristplanner.controller;
 
 import at.technikum.touristplanner.dto.in.TourCreate;
+import at.technikum.touristplanner.dto.out.TourExportPublic;
 import at.technikum.touristplanner.dto.out.TourPublic;
 import at.technikum.touristplanner.entity.Tour;
 import at.technikum.touristplanner.mapper.TourMapper;
@@ -50,5 +51,10 @@ public class TourController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable int id) {
         tourService.delete(id);
+    }
+
+    @GetMapping("/{id}/export")
+    public TourExportPublic exportTour(@PathVariable int id) {
+        return tourService.exportTour(id);
     }
 }

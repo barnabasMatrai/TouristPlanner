@@ -3,6 +3,7 @@ package at.technikum.touristplanner.mapper;
 import at.technikum.touristplanner.dto.in.RouteInfoCreate;
 import at.technikum.touristplanner.dto.in.RouteMetricsCreate;
 import at.technikum.touristplanner.dto.in.TourCreate;
+import at.technikum.touristplanner.dto.out.TourExportPublic;
 import at.technikum.touristplanner.dto.out.TourPublic;
 import at.technikum.touristplanner.entity.RouteInfo;
 import at.technikum.touristplanner.entity.RouteMetrics;
@@ -19,4 +20,5 @@ public interface TourMapper {
     TourPublic toObject(Tour tour);
     RouteInfo toEntity(RouteInfoCreate dto);
     RouteMetrics toEntity(RouteMetricsCreate dto);
+    TourExportPublic toExport(Tour tour);
 }

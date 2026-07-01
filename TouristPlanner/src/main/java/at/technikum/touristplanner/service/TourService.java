@@ -1,10 +1,9 @@
 package at.technikum.touristplanner.service;
 
 import at.technikum.touristplanner.dto.in.RouteInfoCreate;
-import at.technikum.touristplanner.dto.in.RouteMetricsCreate;
 import at.technikum.touristplanner.dto.in.TourCreate;
-import at.technikum.touristplanner.dto.openrouteservice.RouteRequest;
 import at.technikum.touristplanner.dto.openrouteservice.RouteResponse;
+import at.technikum.touristplanner.dto.out.TourExportPublic;
 import at.technikum.touristplanner.dto.service.Coordinates;
 import at.technikum.touristplanner.entity.RouteInfo;
 import at.technikum.touristplanner.entity.RouteMetrics;
@@ -18,12 +17,9 @@ import at.technikum.touristplanner.repository.UserRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.AllArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
-import java.util.Map;
 
 @Service
 @AllArgsConstructor
@@ -32,6 +28,7 @@ public class TourService {
     private final TourRepository tourRepository;
     private final UserRepository userRepository;
     private final GeoService geoService;
+    private final ObjectMapper objectMapper;
 
     private record ResolvedRoute(
             Coordinates from,
@@ -145,5 +142,10 @@ public class TourService {
         routeInfo.setToLongitude(toCoordinates.getLongitude());
 
         routeInfo.setRouteGeometry(geoService.getRouteGeometry(route));
+    }
+
+    public TourExportPublic exportTour(int id) {
+        Tour tour = get(id);
+        return tourMapper.toExport(tour);
     }
 }
