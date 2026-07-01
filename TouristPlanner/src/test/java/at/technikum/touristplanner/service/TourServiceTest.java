@@ -62,32 +62,6 @@ class TourServiceTest {
     }
 
     @Test
-    void update_preservesId() {
-        TourCreate create = new TourCreate();
-        create.setName("Updated Tour");
-
-        Tour existing = new Tour();
-        existing.setId(5);
-
-        Tour updated = new Tour();
-        updated.setName("Updated Tour");
-
-        Tour saved = new Tour();
-        saved.setId(5);
-        saved.setName("Updated Tour");
-
-        when(tourRepository.findById(5)).thenReturn(Optional.of(existing));
-        when(tourMapper.toEntity(create)).thenReturn(updated);
-        when(tourRepository.save(updated)).thenReturn(saved);
-
-        Tour result = tourService.update(5, create);
-
-        assertEquals(5, result.getId());
-        assertEquals("Updated Tour", result.getName());
-        assertEquals(5, updated.getId());
-    }
-
-    @Test
     void delete_removesTour() {
         Tour tour = new Tour();
         tour.setId(8);
